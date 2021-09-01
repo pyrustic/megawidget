@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog
 from viewable import CustomView
-from tkutil import merge_cnfs
+from tkutil import merge_megaconfig
 
 
 BODY = "body"
@@ -16,38 +16,38 @@ class Pathentry(tk.Frame):
     def __init__(self,
                  master=None,
                  browse="file",
+                 textvariable=None,
                  width=17,
                  title=None,
                  initialdir=None,
-                 cnfs=None):
+                 megaconfig=None):
         """
         - master: widget parent. Example: an instance of tk.Frame
 
         """
         cache = {ENTRY: {"width": width},
                  DIALOG: {"initialdir": initialdir, "title": title}}
-        self.__cnfs = merge_cnfs(cache, cnfs,
-                                 components=(BODY, ENTRY, BUTTON, DIALOG))
+        self.__megaconfig = merge_megaconfig(primary=cache, secondary=megaconfig)
         super().__init__(master=master,
                          class_="Pathentry",
-                         cnf=self.__cnfs[BODY])
+                         cnf=self.__megaconfig.get(BODY))
         self.__browse = browse
         self.__title = title
         self.__initialdir = initialdir
         self.__entry = None
         self.__button = None
-        self.__components = {}
-        self.__string_var = tk.StringVar(value="")
+        self.__parts = {}
+        self.__string_var = textvariable if textvariable else tk.StringVar(value="")
         # build
         self.__setup()
     # ==============================================
     #                   PROPERTIES
     # ==============================================
     @property
-    def components(self):
+    def parts(self):
         """
         """
-        return self.__components
+        return self.__parts
 
     @property
     def string_var(self):
@@ -70,14 +70,14 @@ class Pathentry(tk.Frame):
 
     def __build(self):
         self.__entry = tk.Entry(self, textvariable=self.__string_var,
-                                cnf=self.__cnfs[ENTRY])
+                                cnf=self.__megaconfig.get(ENTRY))
         self.__entry.pack(side=tk.LEFT, pady=0, fill=tk.X, expand=1)
-        self.__components["entry"] = self.__entry
+        self.__parts["entry"] = self.__entry
         self.__button = tk.Button(self, text="...",
                                   command=self.__on_click_button,
-                                  cnf=self.__cnfs[BUTTON])
+                                  cnf=self.__megaconfig.get(BUTTON))
         self.__button.pack(side=tk.LEFT, padx=(2, 0), fill=tk.Y)
-        self.__components["button"] = self.__button
+        self.__parts["button"] = self.__button
 
     def __on_map(self):
         pass
@@ -88,7 +88,7 @@ class Pathentry(tk.Frame):
     def __on_click_button(self):
         if self.__browse == "file":
             try:
-                filename = filedialog.askopenfilename(**self.__cnfs[DIALOG])
+                filename = filedialog.askopenfilename(**self.__megaconfig.get(DIALOG, {}))
             except Exception as e:
                 return
             path = None
@@ -102,7 +102,7 @@ class Pathentry(tk.Frame):
                 self.__string_var.set(path)
         else:
             try:
-                filename = filedialog.askdirectory(**self.__cnfs[DIALOG])
+                filename = filedialog.askdirectory(**self.__megaconfig.get(DIALOG, {}))
             except Exception as e:
                 return
             path = None
@@ -128,8 +128,8 @@ class Error(Exception):
 
 if __name__ == "__main__":
     root = tk.Tk()
+    dialog_config = {"title": "Hello"}
     pathentry_test = Pathentry(root, browse="dir",
-                               cnfs={"dialog":
-                                         {"title": "Hello"}})
+                               megaconfig={"dialog": dialog_config})
     pathentry_test.pack(fill=tk.BOTH, expand=1)
     root.mainloop()

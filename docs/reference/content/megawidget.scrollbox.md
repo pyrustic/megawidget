@@ -67,7 +67,7 @@ class Scrollbox:
         root.mainloop()
     """
 
-    def __init__(self, master=None, orient='vertical', box_sticky='nswe', resizable_box=True, cnfs=None):
+    def __init__(self, master=None, orient='vertical', box_sticky='nswe', resizable_box=True, megaconfig=None):
         """
         - master: widget parent. Example: an instance of tk.Frame
         
@@ -86,9 +86,15 @@ class Scrollbox:
         """
 
     @property
-    def components(self):
+    def orient(self):
         """
-        Get the components (widgets instances) used to build this scrollbox.
+        
+        """
+
+    @property
+    def parts(self):
+        """
+        Get the parts (widgets instances) used to build this scrollbox.
         
         This property returns a dict. The keys are:
             BODY, CANVAS, BOX, HSB, VSB
@@ -96,12 +102,6 @@ class Scrollbox:
         Warning: check the presence of key before usage. Example,
         the widget linked to the HSB key may be missing because
         only VSB is used
-        """
-
-    @property
-    def orient(self):
-        """
-        
         """
 
     def box_config(self, **options):

@@ -1,10 +1,10 @@
 import tkinter as tk
 from viewable import Viewable, CustomView
-from tkutil import merge_cnfs
+from tkutil import merge_megaconfig
 import tkutil
 
 
-# Components
+# parts
 BODY = "body"
 LABEL_HEADER = "label_header"
 LABEL_MESSAGE = "label_message"
@@ -36,7 +36,7 @@ class Toast(tk.Toplevel):
                  duration=1234,
                  decoration=False,
                  geometry=None,
-                 cnfs=None):
+                 megaconfig=None):
         """
         PARAMETERS:
 
@@ -64,11 +64,10 @@ class Toast(tk.Toplevel):
                 options = { BODY: {"background": "red"},
                             LABEL_MESSAGE: {"background": "black"} }
         """
-        self.__cnfs = merge_cnfs(None, cnfs, components=(BODY,
-                        LABEL_HEADER, LABEL_MESSAGE))
+        self.__megaconfig = merge_megaconfig(secondary=megaconfig)
         super().__init__(master=master,
                          class_="Toast",
-                         cnf=self.__cnfs[BODY])
+                         cnf=self.__megaconfig.get(BODY))
         self.__title = title
         self.__header = header
         self.__message = message
@@ -76,7 +75,7 @@ class Toast(tk.Toplevel):
         self.__decoration = decoration
         self.__geometry = geometry
         self.__cancel_id = None
-        self.__components = {}
+        self.__parts = {}
         self.__setup()
 
     # ======================================
@@ -100,14 +99,14 @@ class Toast(tk.Toplevel):
         return self.__decoration
 
     @property
-    def components(self):
+    def parts(self):
         """
-        Get the components (widgets instances) used to build this Toast.
+        Get the parts (widgets instances) used to build this Toast.
 
         This property returns a dict. The keys are:
             BODY, LABEL_HEADER, LABEL_MESSAGE,
         """
-        return self.__components
+        return self.__parts
 
     # ======================================
     #            LIFECYCLE
@@ -133,8 +132,8 @@ class Toast(tk.Toplevel):
                                     text=self.__header,
                                     anchor="w",
                                     justify=tk.LEFT,
-                                    cnf=self.__cnfs[LABEL_HEADER])
-            self.__components[LABEL_HEADER] = label_header
+                                    cnf=self.__megaconfig.get(LABEL_HEADER))
+            self.__parts[LABEL_HEADER] = label_header
             label_header.pack(fill=tk.X, padx=10, pady=10)
         if self.__message:
             label_message = tk.Label(self,
@@ -142,8 +141,8 @@ class Toast(tk.Toplevel):
                                      text=self.__message,
                                      anchor="w",
                                      justify=tk.LEFT,
-                                     cnf=self.__cnfs[LABEL_MESSAGE])
-            self.__components[LABEL_MESSAGE] = label_message
+                                     cnf=self.__megaconfig.get(LABEL_MESSAGE))
+            self.__parts[LABEL_MESSAGE] = label_message
             label_message.pack(fill=tk.X, padx=10, pady=10)
 
     def __on_map(self):

@@ -47,7 +47,7 @@ class Confirm:
         root.mainloop()
     """
 
-    def __init__(self, master=None, title=None, header=None, message=None, handler=None, geometry=None, cnfs=None):
+    def __init__(self, master=None, title=None, header=None, message=None, handler=None, geometry=None, megaconfig=None):
         """
         PARAMETERS:
         
@@ -77,18 +77,6 @@ class Confirm:
         """
 
     @property
-    def components(self):
-        """
-        Get the components (widgets instances) used to build this dialog.
-        
-        This property returns a dict. The keys are:
-            BODY, LABEL_HEADER,
-            LABEL_MESSAGE, FRAME_FOOTER, BUTTON_CANCEL, BUTTON_CONFIRM
-        
-        Warning: check the presence of key before usage
-        """
-
-    @property
     def handler(self):
         """
         
@@ -110,6 +98,18 @@ class Confirm:
     def ok(self):
         """
         Returns True if user confirmed, else get False
+        """
+
+    @property
+    def parts(self):
+        """
+        Get the parts (widgets instances) used to build this dialog.
+        
+        This property returns a dict. The keys are:
+            BODY, LABEL_HEADER,
+            LABEL_MESSAGE, FRAME_FOOTER, BUTTON_CANCEL, BUTTON_CONFIRM
+        
+        Warning: check the presence of key before usage
         """
 
 ```

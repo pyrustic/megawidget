@@ -1,10 +1,10 @@
 import tkinter as tk
 import tkutil
 from viewable import Viewable, CustomView
-from tkutil import merge_cnfs
+from tkutil import merge_megaconfig
 
 
-# Components
+# parts
 BODY = "body"
 LABEL_HEADER = "label_header"
 LABEL_MESSAGE = "label_message"
@@ -40,7 +40,7 @@ class Confirm(tk.Toplevel):
                  message=None,
                  handler=None,
                  geometry=None,
-                 cnfs=None):
+                 megaconfig=None):
         """
         PARAMETERS:
 
@@ -69,18 +69,16 @@ class Confirm(tk.Toplevel):
                             LABEL_MESSAGE: {"background": "black"} }
 
         """
-        self.__cnfs = merge_cnfs(None, cnfs, components=(BODY,
-                        LABEL_HEADER, LABEL_MESSAGE, FRAME_FOOTER,
-                        BUTTON_CANCEL, BUTTON_CONFIRM))
+        self.__megaconfig = merge_megaconfig(secondary=megaconfig)
         super().__init__(master=master,
                          class_="Confirm",
-                         cnf=self.__cnfs[BODY])
+                         cnf=self.__megaconfig.get(BODY))
         self.__title = title
         self.__header = header
         self.__message = message
         self.__handler = handler
         self.__geometry = geometry
-        self.__components = {}
+        self.__parts = {}
         self.__ok = False
         # build
         self.__setup()
@@ -109,9 +107,9 @@ class Confirm(tk.Toplevel):
         return self.__ok
 
     @property
-    def components(self):
+    def parts(self):
         """
-        Get the components (widgets instances) used to build this dialog.
+        Get the parts (widgets instances) used to build this dialog.
 
         This property returns a dict. The keys are:
             BODY, LABEL_HEADER,
@@ -119,7 +117,7 @@ class Confirm(tk.Toplevel):
 
         Warning: check the presence of key before usage
         """
-        return self.__components
+        return self.__parts
 
     # ====================================
     #               INTERNAL
@@ -145,8 +143,8 @@ class Confirm(tk.Toplevel):
                                     anchor="w",
                                     justify=tk.LEFT,
                                     name=LABEL_HEADER,
-                                    cnf=self.__cnfs[LABEL_HEADER])
-            self.__components[LABEL_HEADER] = label_header
+                                    cnf=self.__megaconfig.get(LABEL_HEADER))
+            self.__parts[LABEL_HEADER] = label_header
             label_header.pack(fill=tk.X, expand=1, anchor="w", pady=5, padx=5)
         #
         if self.__message:
@@ -155,30 +153,30 @@ class Confirm(tk.Toplevel):
                                      text=self.__message,
                                      anchor="w",
                                      justify=tk.LEFT,
-                                     cnf=self.__cnfs[LABEL_MESSAGE])
-            self.__components[LABEL_MESSAGE] = label_message
+                                     cnf=self.__megaconfig.get(LABEL_MESSAGE))
+            self.__parts[LABEL_MESSAGE] = label_message
             label_message.pack(fill=tk.BOTH,
                                expand=1, padx=5, pady=(5, 10))
 
         #
-        frame_footer = tk.Frame(self, cnf=self.__cnfs[FRAME_FOOTER])
-        self.__components[FRAME_FOOTER] = frame_footer
+        frame_footer = tk.Frame(self, cnf=self.__megaconfig.get(FRAME_FOOTER))
+        self.__parts[FRAME_FOOTER] = frame_footer
         frame_footer.pack(anchor="e", pady=(0, 2), padx=2)
         #
         button_confirm = tk.Button(frame_footer,
                                    text="Confirm",
                                    name=BUTTON_CONFIRM,
                                    command=self.__on_click_confirm,
-                                   cnf=self.__cnfs[BUTTON_CONFIRM])
-        self.__components[BUTTON_CONFIRM] = button_confirm
+                                   cnf=self.__megaconfig.get(BUTTON_CONFIRM))
+        self.__parts[BUTTON_CONFIRM] = button_confirm
         button_confirm.pack(side=tk.RIGHT)
         #
         button_cancel = tk.Button(frame_footer,
                                   text="Cancel",
                                   name=BUTTON_CANCEL,
                                   command=self.__on_click_cancel,
-                                  cnf=self.__cnfs[BUTTON_CANCEL])
-        self.__components[BUTTON_CANCEL] = button_cancel
+                                  cnf=self.__megaconfig.get(BUTTON_CANCEL))
+        self.__parts[BUTTON_CANCEL] = button_cancel
         button_cancel.pack(side=tk.RIGHT, padx=(0, 2))
 
     def __on_map(self):

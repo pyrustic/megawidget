@@ -60,7 +60,7 @@ class Choice:
         root.mainloop()
     """
 
-    def __init__(self, master=None, title=None, header=None, message=None, items=None, selected=None, flavor='radio', handler=None, geometry=None, cnfs=None):
+    def __init__(self, master=None, title=None, header=None, message=None, items=None, selected=None, flavor='radio', handler=None, geometry=None, megaconfig=None):
         """
         PARAMETERS:
         
@@ -109,22 +109,6 @@ class Choice:
         """
 
     @property
-    def components(self):
-        """
-        Get the components (widgets instances) used to build this dialog.
-        
-        This property returns a dict. The keys are:
-            BODY, LABEL_HEADER, SCROLLBOX, LABEL_MESSAGE,
-            FRAME_PANE, FRAME_FOOTER, BUTTON_CONTINUE, BUTTON_CANCEL,
-            RADIOBUTTONS, CHECKBUTTONS.
-        
-        Warning: radiobuttons and checkbuttons are sequences of widgets positioned
-        in the sequence according to the index.
-        
-        Another Warning: check the presence of key before usage.
-        """
-
-    @property
     def flavor(self):
         """
         
@@ -152,6 +136,22 @@ class Choice:
     def message(self):
         """
         
+        """
+
+    @property
+    def parts(self):
+        """
+        Get the parts (widgets instances) used to build this dialog.
+        
+        This property returns a dict. The keys are:
+            BODY, LABEL_HEADER, SCROLLBOX, LABEL_MESSAGE,
+            FRAME_PANE, FRAME_FOOTER, BUTTON_CONTINUE, BUTTON_CANCEL,
+            RADIOBUTTONS, CHECKBUTTONS.
+        
+        Warning: radiobuttons and checkbuttons are sequences of widgets positioned
+        in the sequence according to the index.
+        
+        Another Warning: check the presence of key before usage.
         """
 
     @property

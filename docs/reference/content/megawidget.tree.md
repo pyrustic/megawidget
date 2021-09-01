@@ -137,7 +137,7 @@ class Tree:
     environment to see the usage of SimpleTree
     """
 
-    def __init__(self, master=None, indent=50, spacing=10, cnfs=None):
+    def __init__(self, master=None, indent=50, spacing=10, megaconfig=None):
         """
         PARAMETERS:
         

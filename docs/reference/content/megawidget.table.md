@@ -91,7 +91,7 @@ class Table:
     ```
     """
 
-    def __init__(self, master=None, titles=None, data=None, hidden_columns=None, sorting=True, mask=None, select_mode='browse', layout='equally', orient='both', cnfs=None):
+    def __init__(self, master=None, titles=None, data=None, hidden_columns=None, sorting=True, mask=None, select_mode='browse', layout='equally', orient='both', megaconfig=None):
         """
         PARAMETERS:
         
@@ -131,18 +131,6 @@ class Table:
             and the horizontal scrollbar's background to red:
                 options = {"BODY": {"background": "red"},
                            "HSB": {"background": "black"}}
-        """
-
-    @property
-    def components(self):
-        """
-        Get the components (widgets instances) used to build this dialog.
-        
-        This property returns a dict. The keys are:
-            BODY, VSB, HSB, CANVAS, FRAME_BACKGROUND,
-            FRAMES_HEADERS, LISTBOXES_COLUMNS, LABELS_SORTING and LABELS_TITLES
-        Warning: FRAMES_HEADERS, LABELS_TITLES, LABELS_SORTING
-         and LISTBOXES_COLUMNS are sequences of widgets by index
         """
 
     @property
@@ -203,6 +191,18 @@ class Table:
     def orient(self):
         """
         
+        """
+
+    @property
+    def parts(self):
+        """
+        Get the parts (widgets instances) used to build this dialog.
+        
+        This property returns a dict. The keys are:
+            BODY, VSB, HSB, CANVAS, FRAME_BACKGROUND,
+            FRAMES_HEADERS, LISTBOXES_COLUMNS, LABELS_SORTING and LABELS_TITLES
+        Warning: FRAMES_HEADERS, LABELS_TITLES, LABELS_SORTING
+         and LISTBOXES_COLUMNS are sequences of widgets by index
         """
 
     @property

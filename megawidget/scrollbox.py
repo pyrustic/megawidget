@@ -1,9 +1,9 @@
 import tkinter as tk
-from tkutil import merge_cnfs
+from tkutil import merge_megaconfig
 from viewable import Viewable, CustomView
 
 
-# Components
+# parts
 BODY = "body"
 CANVAS = "canvas"
 BOX = "box"
@@ -41,7 +41,7 @@ class Scrollbox(tk.Frame):
                  orient=VERTICAL,
                  box_sticky="nswe",
                  resizable_box=True,
-                 cnfs=None):
+                 megaconfig=None):
         """
         - master: widget parent. Example: an instance of tk.Frame
 
@@ -52,11 +52,10 @@ class Scrollbox(tk.Frame):
             Example: Assume that you want to set the CANVAS background to red
                 options = {CANVAS: {"background": "red"}}
         """
-        self.__cnfs = merge_cnfs(None, cnfs,
-                                 components=(BODY, CANVAS, BOX, HSB, VSB))
+        self.__megaconfig = merge_megaconfig(secondary=megaconfig)
         super().__init__(master=master,
                          class_="Scrollbox",
-                         cnf=self.__cnfs[BODY])
+                         cnf=self.__megaconfig.get(BODY))
         self.__orient = orient
         self.__box_sticky = box_sticky
         self.__resizable_box = resizable_box
@@ -68,7 +67,7 @@ class Scrollbox(tk.Frame):
         self.__hsb = None
         self.__hsb_under_mouse = False
         self.__is_scrollable = False
-        self.__components = {}
+        self.__parts = {}
         # setup
         self.__setup()
     # ==============================================
@@ -85,9 +84,9 @@ class Scrollbox(tk.Frame):
         return self.__orient
 
     @property
-    def components(self):
+    def parts(self):
         """
-        Get the components (widgets instances) used to build this scrollbox.
+        Get the parts (widgets instances) used to build this scrollbox.
 
         This property returns a dict. The keys are:
             BODY, CANVAS, BOX, HSB, VSB
@@ -96,7 +95,7 @@ class Scrollbox(tk.Frame):
         the widget linked to the HSB key may be missing because
         only VSB is used
         """
-        return self.__components
+        return self.__parts
 
     # ==============================================
     #                 PUBLIC METHODS
@@ -176,14 +175,14 @@ class Scrollbox(tk.Frame):
                                   name=CANVAS,
                                   width=0,
                                   height=0,
-                                  cnf=self.__cnfs[CANVAS])
-        self.__components[CANVAS] = self.__canvas
+                                  cnf=self.__megaconfig.get(CANVAS))
+        self.__parts[CANVAS] = self.__canvas
         self.__canvas.grid(row=0, column=0, sticky=self.__box_sticky)
         # box
         self.__box = tk.Frame(self.__canvas,
                               name=BOX,
-                              cnf=self.__cnfs[BOX])
-        self.__components[BOX] = self.__box
+                              cnf=self.__megaconfig.get(BOX))
+        self.__parts[BOX] = self.__box
         self.__box_id = self.__canvas.create_window(0, 0, window=self.__box, anchor="nw")
         self.__box.bind("<Configure>", self.__on_configure_box_canvas, "+")
         # scrollbar
@@ -214,8 +213,8 @@ class Scrollbox(tk.Frame):
             self.__hsb = tk.Scrollbar(self, orient="horizontal",
                                       name=HSB,
                                       command=self.__canvas.xview,
-                                      cnf=self.__cnfs[HSB])
-            self.__components[HSB] = self.__hsb
+                                      cnf=self.__megaconfig.get(HSB))
+            self.__parts[HSB] = self.__hsb
             self.__hsb.grid(row=1, column=0, columnspan=2, sticky="swe")
             self.__canvas.config(xscrollcommand=self.__hsb.set)
             self.__bind_enter_leave_to_hsb()
@@ -223,8 +222,8 @@ class Scrollbox(tk.Frame):
             self.__vsb = tk.Scrollbar(self, orient="vertical",
                                       name=VSB,
                                       command=self.__canvas.yview,
-                                      cnf=self.__cnfs[VSB])
-            self.__components[VSB] = self.__vsb
+                                      cnf=self.__megaconfig.get(VSB))
+            self.__parts[VSB] = self.__vsb
             self.__vsb.grid(row=0, column=1, sticky=self.__box_sticky)
             self.__canvas.config(yscrollcommand=self.__vsb.set)
 

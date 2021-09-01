@@ -1,9 +1,9 @@
 import tkinter as tk
 from viewable import CustomView
-from tkutil import merge_cnfs
+from tkutil import merge_megaconfig
 
 
-# Components
+# parts
 BODY = "body"
 FRAME_NODE = "frame_node"
 FRAME_HEADER = "frame_header"
@@ -24,7 +24,7 @@ class Tree(tk.Frame):
                  master=None,
                  indent=50,
                  spacing=10,
-                 cnfs=None):
+                 megaconfig=None):
         """
         PARAMETERS:
 
@@ -41,11 +41,10 @@ class Tree(tk.Frame):
                 options = {BODY: {"background": "red"},
                            NODE_FRAME: {"background": "black"}}
         """
-        self.__cnfs = merge_cnfs(None, cnfs, components=(BODY,
-                    FRAME_NODE, FRAME_HEADER, FRAME_BOX))
+        self.__megaconfig = merge_megaconfig(secondary=megaconfig)
         super().__init__(master=master,
                          class_="Tree",
-                         cnf=self.__cnfs[BODY])
+                         cnf=self.__megaconfig.get(BODY))
         self.__indent = indent
         self.__spacing = spacing
         self.__root = None
@@ -435,7 +434,7 @@ class Tree(tk.Frame):
         master = self if parent is None else self.__get_node(parent)["frame_box"]
         master.columnconfigure(0, weight=1)
         frame_node = tk.Frame(master, class_="FrameNode",
-                              cnf=self.__cnfs[FRAME_NODE])
+                              cnf=self.__megaconfig.get(FRAME_NODE))
         frame_node.columnconfigure(0, weight=1)
         # grid frame_node
         if parent is None:
@@ -445,12 +444,12 @@ class Tree(tk.Frame):
                             sticky="we", pady=(self.__spacing, 0))
         # header
         frame_header = tk.Frame(frame_node, name=FRAME_HEADER,
-                                cnf=self.__cnfs[FRAME_HEADER])
+                                cnf=self.__megaconfig.get(FRAME_HEADER))
         frame_header.columnconfigure(0, weight=1)
         frame_header.grid(row=0, column=0, sticky="we")
         # box
         frame_box = tk.Frame(frame_node, name=FRAME_BOX,
-                             cnf=self.__cnfs[FRAME_BOX])
+                             cnf=self.__megaconfig.get(FRAME_BOX))
         frame_box.grid(row=1, column=0,
                        padx=(self.__indent, 0),
                        sticky="we")
@@ -607,10 +606,10 @@ class ExampleHook(Hook):
             self._expander_stringvar.set("-" if node["expanded"] else "+")
             expander_btn = tk.Button(titlebar, name="treeExpander",
                                      textvariable=self._expander_stringvar,
-                                     padx=0, pady=0,
+                                     padx=0, pady=0, borderwidth=0,
                                      command=lambda self=self, node_id=node_id:
-                                     tree.collexp(node_id))
-            expander_btn.grid(row=0, column=0)
+                                     tree.collexp(node_id), anchor="w")
+            expander_btn.grid(row=0, column=0, ipadx=0, ipady=0)
         self._title_stringvar.set(title)
         title_label = tk.Label(titlebar, name="treeTitleLabel",
                                anchor="w", textvariable=self._title_stringvar)

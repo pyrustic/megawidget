@@ -2,7 +2,7 @@ import tkinter as tk
 import tkutil
 from megawidget.scrollbox import Scrollbox
 from viewable import Viewable, CustomView
-from tkutil import merge_cnfs
+from tkutil import merge_megaconfig
 
 
 # select button flavor
@@ -10,7 +10,7 @@ CHECK = "check"  # for checkbutton
 RADIO = "radio"  # for radiobutton
 
 
-# Components
+# Parts
 BODY = "body"
 LABEL_HEADER = "label_header"
 SCROLLBOX = "scrollbox"
@@ -21,6 +21,7 @@ BUTTON_CONTINUE = "button_continue"
 BUTTON_CANCEL = "button_cancel"
 RADIOBUTTONS = "radiobuttons"
 CHECKBUTTONS = "checkbuttons"
+
 
 # TODO : add a ChoiceBackend class that accept a tk master
 class Choice(tk.Toplevel):
@@ -55,7 +56,7 @@ class Choice(tk.Toplevel):
                  flavor="radio",
                  handler=None,
                  geometry=None,
-                 cnfs=None):
+                 megaconfig=None):
         """
         PARAMETERS:
 
@@ -103,13 +104,10 @@ class Choice(tk.Toplevel):
                             LABEL_MESSAGE: {"background": "black"} }
 
         """
-        self.__cnfs = merge_cnfs(None, cnfs, components=(BODY,
-                                LABEL_HEADER, SCROLLBOX, LABEL_MESSAGE,
-                                FRAME_PANE, FRAME_FOOTER, BUTTON_CONTINUE,
-                                BUTTON_CANCEL, RADIOBUTTONS, CHECKBUTTONS))
+        self.__megaconfig = merge_megaconfig(secondary=megaconfig)
         super().__init__(master=master,
                          class_="Choice",
-                         cnf=self.__cnfs["body"])
+                         cnf=self.__megaconfig.get("body"))
         self.__title = title
         self.__header = header
         self.__message = message
@@ -121,7 +119,7 @@ class Choice(tk.Toplevel):
         #
         self.__result = None
         self.__closing_context = "close"
-        self.__components = dict()
+        self.__parts = dict()
         self.__label_header = None
         self.__label_message = None
         self.__pane = None
@@ -129,8 +127,8 @@ class Choice(tk.Toplevel):
         self.__buttons = None
         self.__intvar = tk.IntVar()
         self.__intvars = []
-        # components
-        self.__components = {}
+        # parts
+        self.__parts = {}
         # setup
         self.__setup()
 
@@ -177,9 +175,9 @@ class Choice(tk.Toplevel):
         return self.__handler
 
     @property
-    def components(self):
+    def parts(self):
         """
-        Get the components (widgets instances) used to build this dialog.
+        Get the parts (widgets instances) used to build this dialog.
 
         This property returns a dict. The keys are:
             BODY, LABEL_HEADER, SCROLLBOX, LABEL_MESSAGE,
@@ -191,7 +189,7 @@ class Choice(tk.Toplevel):
 
         Another Warning: check the presence of key before usage.
         """
-        return self.__components
+        return self.__parts
 
     # ======================================
     #            INTERNAL
@@ -221,8 +219,8 @@ class Choice(tk.Toplevel):
                                     text=self.__header,
                                     justify=tk.LEFT,
                                     anchor="w",
-                                    cnf=self.__cnfs[LABEL_HEADER])
-            self.__components[LABEL_HEADER] = label_header
+                                    cnf=self.__megaconfig.get(LABEL_HEADER))
+            self.__parts[LABEL_HEADER] = label_header
             label_header.grid(row=0, column=0, sticky="w",
                                     padx=(5, 5), pady=(5, 5))
             label_header.config(text=self.__header)
@@ -233,39 +231,39 @@ class Choice(tk.Toplevel):
                                      text=self.__message,
                                      justify=tk.LEFT,
                                      anchor="w",
-                                     cnf=self.__cnfs[LABEL_MESSAGE])
-            self.__components[LABEL_MESSAGE] = label_message
+                                     cnf=self.__megaconfig.get(LABEL_MESSAGE))
+            self.__parts[LABEL_MESSAGE] = label_message
             label_message.grid(row=1, column=0, sticky="w",
                                padx=(5, 5), pady=(0, 5))
         # == Scrollbox
         scrollbox = Scrollbox(self, orient="vertical",
-                              cnfs=self.__cnfs[SCROLLBOX])
-        self.__components[SCROLLBOX] = scrollbox
+                              megaconfig=self.__megaconfig.get(SCROLLBOX))
+        self.__parts[SCROLLBOX] = scrollbox
         scrollbox.grid(row=2, column=0, sticky="nswe",
                              padx=5)
         # == Footer
         self.__footer = tk.Frame(self,
                                  name=FRAME_FOOTER,
-                                 cnf=self.__cnfs[FRAME_FOOTER])
-        self.__components[FRAME_FOOTER] = self.__footer
+                                 cnf=self.__megaconfig.get(FRAME_FOOTER))
+        self.__parts[FRAME_FOOTER] = self.__footer
         self.__footer.grid(row=3, column=0, sticky="swe", pady=(30, 0))
         #
         button_continue = tk.Button(self.__footer, name=BUTTON_CONTINUE,
                                     text="Continue",
                                     command=self.__on_click_continue,
-                                    cnf=self.__cnfs[BUTTON_CONTINUE])
-        self.__components[BUTTON_CONTINUE] = button_continue
+                                    cnf=self.__megaconfig.get(BUTTON_CONTINUE))
+        self.__parts[BUTTON_CONTINUE] = button_continue
         button_continue.pack(side=tk.RIGHT, padx=2, pady=2)
         #
         button_cancel = tk.Button(self.__footer, name=BUTTON_CANCEL,
                                   text="Cancel",
                                   command=self.__on_click_cancel,
-                                  cnf=self.__cnfs[BUTTON_CANCEL])
-        self.__components[BUTTON_CANCEL] = button_cancel
+                                  cnf=self.__megaconfig.get(BUTTON_CANCEL))
+        self.__parts[BUTTON_CANCEL] = button_cancel
         button_cancel.pack(side=tk.RIGHT, padx=(2, 0), pady=2)
         # install and populate check/radio buttons
         key = RADIOBUTTONS if self.__flavor == "radio" else CHECKBUTTONS
-        self.__components[key] = []
+        self.__parts[key] = []
         cache = None
         for i, choice in enumerate(self.__items):
             if not self.__flavor or self.__flavor not in ("radio", "check"):
@@ -274,8 +272,8 @@ class Choice(tk.Toplevel):
                 cache = tk.Radiobutton(scrollbox.box,
                                        variable=self.__intvar,
                                        text=choice, value=i,
-                                       cnf=self.__cnfs[RADIOBUTTONS])
-                self.__components[RADIOBUTTONS].append(cache)
+                                       cnf=self.__megaconfig.get(RADIOBUTTONS))
+                self.__parts[RADIOBUTTONS].append(cache)
             elif self.__flavor == "check":
                 tk_var = tk.IntVar()
                 self.__intvars.append(tk_var)
@@ -283,8 +281,8 @@ class Choice(tk.Toplevel):
                                        variable=tk_var,
                                        onvalue=1, offvalue=0,
                                        text=choice,
-                                       cnf=self.__cnfs[CHECKBUTTONS])
-                self.__components[CHECKBUTTONS].append(cache)
+                                       cnf=self.__megaconfig.get(CHECKBUTTONS))
+                self.__parts[CHECKBUTTONS].append(cache)
             if cache:
                 cache.pack(anchor="w", expand=1)
 

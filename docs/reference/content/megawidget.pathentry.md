@@ -44,13 +44,13 @@ class Pathentry:
         
     """
 
-    def __init__(self, master=None, browse='file', width=17, title=None, initialdir=None, cnfs=None):
+    def __init__(self, master=None, browse='file', textvariable=None, width=17, title=None, initialdir=None, megaconfig=None):
         """
         - master: widget parent. Example: an instance of tk.Frame
         """
 
     @property
-    def components(self):
+    def parts(self):
         """
                 
         """

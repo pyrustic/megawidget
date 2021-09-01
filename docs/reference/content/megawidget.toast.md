@@ -54,7 +54,7 @@ class Toast:
         root.mainloop()
     """
 
-    def __init__(self, master=None, title=None, header=None, message=None, duration=1234, decoration=False, geometry=None, cnfs=None):
+    def __init__(self, master=None, title=None, header=None, message=None, duration=1234, decoration=False, geometry=None, megaconfig=None):
         """
         PARAMETERS:
         
@@ -84,15 +84,6 @@ class Toast:
         """
 
     @property
-    def components(self):
-        """
-        Get the components (widgets instances) used to build this Toast.
-        
-        This property returns a dict. The keys are:
-            BODY, LABEL_HEADER, LABEL_MESSAGE,
-        """
-
-    @property
     def decoration(self):
         """
         
@@ -114,6 +105,15 @@ class Toast:
     def message(self):
         """
         
+        """
+
+    @property
+    def parts(self):
+        """
+        Get the parts (widgets instances) used to build this Toast.
+        
+        This property returns a dict. The keys are:
+            BODY, LABEL_HEADER, LABEL_MESSAGE,
         """
 
 ```

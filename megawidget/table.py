@@ -1,7 +1,7 @@
 import tkinter as tk
 import operator
 from viewable import CustomView
-from tkutil import merge_cnfs
+from tkutil import merge_megaconfig
 
 
 # Allowed Options for columns
@@ -13,7 +13,7 @@ COLUMN_OPTIONS = ["background", "borderwidth", "cursor",
                   "selectforeground", "setgrid", "state", "takefocus",
                   "width"]
 
-# Components of table
+# parts of table
 BODY = "body"
 VSB = "vsb"
 HSB = "hsb"
@@ -62,6 +62,7 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
     ```
 
     """
+    #TODO: add the parameter 'name' to all megawidgets parameters
     def __init__(self,
                  master=None,
                  titles=None,
@@ -72,7 +73,7 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
                  select_mode=BROWSE,
                  layout=EQUALLY,
                  orient=BOTH,
-                 cnfs=None):
+                 megaconfig=None):
         """
         PARAMETERS:
 
@@ -113,15 +114,12 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
                 options = {"BODY": {"background": "red"},
                            "HSB": {"background": "black"}}
         """
-        self.__cnfs = merge_cnfs(None, cnfs,
-                                 components=(BODY, VSB, HSB, CANVAS,
-                        FRAME_BACKGROUND, FRAMES_HEADERS, LISTBOXES_COLUMNS,
-                        LABELS_SORTING, LABELS_TITLES))
+        self.__megaconfig = merge_megaconfig(secondary=megaconfig)
         super().__init__(master=master,
                          class_="Table",
-                         cnf=self.__cnfs[BODY])
+                         cnf=self.__megaconfig.get(BODY))
         # check if listboxes options are valid
-        _verify_options(self.__cnfs[LISTBOXES_COLUMNS])
+        _verify_options(self.__megaconfig.get(LISTBOXES_COLUMNS, {}))
         self.__titles_cache = () if titles is None else titles
         self.__titles = []
         self.__data_cache = () if data is None else data
@@ -139,7 +137,7 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
         self.__labels_titles_options = None
         self.__listboxes_columns_options = None
         # misc
-        self.__components = {}
+        self.__parts = {}
         self.__cache = None
         self.__current_sorting = None
         self.__current_column_index = None
@@ -162,7 +160,7 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
         # string vars cache
         self.__labels_sorting_stringvars_cache = []
         self.__labels_titles_stringvars_cache = []
-        # components
+        # parts
         self.__canvas = None
         self.__background = None
         self.__background_id = None
@@ -256,9 +254,9 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
         return len(self.__data), len(self.__titles)
 
     @property
-    def components(self):
+    def parts(self):
         """
-        Get the components (widgets instances) used to build this dialog.
+        Get the parts (widgets instances) used to build this dialog.
 
         This property returns a dict. The keys are:
             BODY, VSB, HSB, CANVAS, FRAME_BACKGROUND,
@@ -266,7 +264,7 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
         Warning: FRAMES_HEADERS, LABELS_TITLES, LABELS_SORTING
          and LISTBOXES_COLUMNS are sequences of widgets by index
         """
-        return self.__components
+        return self.__parts
 
     @property
     def selection(self):
@@ -427,11 +425,11 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
         self.columnconfigure(0, weight=1)
         self.rowconfigure(0, weight=1)
         self.__canvas = tk.Canvas(self, name=CANVAS,
-                                  cnf=self.__cnfs[CANVAS])
-        self.__components[CANVAS] = self.__canvas
+                                  cnf=self.__megaconfig.get(CANVAS))
+        self.__parts[CANVAS] = self.__canvas
         self.__canvas.grid(row=0, column=0, sticky="nswe")
         self.__background = tk.Frame(self.__canvas, self.__frame_background_options)
-        self.__components[FRAME_BACKGROUND] = self.__background
+        self.__parts[FRAME_BACKGROUND] = self.__background
         self.__background_id = self.__canvas.create_window(0, 0,
                                                            window=self.__background,
                                                            anchor="nw")
@@ -441,10 +439,10 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
         self.__set_scrollbars()
 
     def __build_header_and_columns(self):
-        self.__components[FRAMES_HEADERS] = []
-        self.__components[LABELS_SORTING] = []
-        self.__components[LABELS_TITLES] = []
-        self.__components[LISTBOXES_COLUMNS] = []
+        self.__parts[FRAMES_HEADERS] = []
+        self.__parts[LABELS_SORTING] = []
+        self.__parts[LABELS_TITLES] = []
+        self.__parts[LISTBOXES_COLUMNS] = []
         ignored_i = 0
         for i, title in enumerate(self.__titles):
             if i in self.__hidden_columns:
@@ -457,8 +455,8 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
             # Build Header
             # - install header frame
             frame_header = tk.Frame(self.__background,
-                                    cnf=self.__cnfs[FRAMES_HEADERS])
-            self.__components[FRAMES_HEADERS].append(frame_header)
+                                    cnf=self.__megaconfig.get(FRAMES_HEADERS))
+            self.__parts[FRAMES_HEADERS].append(frame_header)
             frame_header.grid(row=0, column=i, sticky="nswe")
             frame_header.columnconfigure(1, weight=1)
             self.__header_frames_cache.append(frame_header)
@@ -467,8 +465,8 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
             self.__labels_sorting_stringvars_cache.append(label_sorting_stringvar)
             label_sorting = tk.Label(frame_header,
                                      textvariable=label_sorting_stringvar,
-                                     cnf=self.__cnfs[LABELS_SORTING])
-            self.__components[LABELS_SORTING].append(label_sorting)
+                                     cnf=self.__megaconfig.get(LABELS_SORTING))
+            self.__parts[LABELS_SORTING].append(label_sorting)
             label_sorting.grid(row=0, column=0)
             label_sorting.bind("<Button-1>",
                                lambda event, i=i: self.__on_header_clicked(event, i), "+")
@@ -480,8 +478,8 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
             self.__labels_titles_stringvars_cache.append(label_title_stringvar)
             label_title = tk.Label(frame_header,
                                    textvariable=label_title_stringvar,
-                                   cnf=self.__cnfs[LABELS_TITLES])
-            self.__components[LABELS_TITLES].append(label_title)
+                                   cnf=self.__megaconfig.get(LABELS_TITLES))
+            self.__parts[LABELS_TITLES].append(label_title)
             label_title.grid(row=0, column=1, sticky="nswe")
             label_title.bind("<Button-1>",
                              lambda event, i=i: self.__on_header_clicked(event, i), "+")
@@ -491,8 +489,8 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
                                  activestyle="none",
                                  selectmode=BROWSE if self.__select_mode == MULTIPLE
                                  else self.__select_mode,
-                                 cnf=self.__cnfs[LISTBOXES_COLUMNS], takefocus=0)
-            self.__components[LISTBOXES_COLUMNS].append(listbox)
+                                 cnf=self.__megaconfig.get(LISTBOXES_COLUMNS), takefocus=0)
+            self.__parts[LISTBOXES_COLUMNS].append(listbox)
             listbox.config(highlightcolor=listbox.cget("highlightbackground"))
             listbox.grid(row=1, column=i, sticky="nswe")
             listbox.bind('<<ListboxSelect>>',
@@ -510,7 +508,7 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
             self.__hsb = tk.Scrollbar(self, name=HSB,
                                       orient="horizontal",
                                       command=self.__canvas.xview)
-            self.__components[HSB] = self.__hsb
+            self.__parts[HSB] = self.__hsb
             self.__hsb.grid(row=1, column=0, columnspan=2, sticky="we")
             self.__hsb.bind("<Button-4>", self.__on_mouse_wheel, "+")
             self.__hsb.bind("<Button-5>", self.__on_mouse_wheel, "+")
@@ -519,7 +517,7 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
             self.__vsb = tk.Scrollbar(self, name=VSB,
                                       orient="vertical",
                                       command=self.__scroll_listboxes_sync)
-            self.__components[VSB] = self.__vsb
+            self.__parts[VSB] = self.__vsb
             self.__vsb.grid(row=0, column=1, sticky="ns")
         for listbox in self.__listboxes_cache:
             listbox.config(yscrollcommand=self.__scroll_listboxes_and_scrollbar_sync)
@@ -550,6 +548,7 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
             handler(self, self.__titles, i)
 
     def __on_row_selected(self, event, column_index):
+        self.__extract_listboxes_color()
         selection = event.widget.curselection()
         if not selection:
             return
