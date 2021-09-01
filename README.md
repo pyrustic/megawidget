@@ -1,3 +1,11 @@
+<!-- Image -->
+<div align="center">
+    <img src="https://raw.githubusercontent.com/pyrustic/misc/master/media/cyberpunk-cover.png" alt="Figure" width="970">
+    <p align="center">
+    <i> A mix of standard Tkinter widgets and megawidgets (theme used: <a href="https://github.com/pyrustic/cyberpunk-theme">cyberpunk-theme</a>) </i>
+    </p>
+</div>
+
 <!-- Intro Text -->
 # Megawidget
 <b> A collection of useful widgets for your Tkinter Python apps </b>

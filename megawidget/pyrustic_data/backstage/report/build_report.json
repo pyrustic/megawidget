@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "app_version": "0.0.3",
+        "released": true,
+        "timestamp": 1630495395,
+        "wheel_asset": "megawidget-0.0.3-py3-none-any.whl"
+    }
+]
