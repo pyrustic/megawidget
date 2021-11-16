@@ -2,7 +2,6 @@ import tkinter as tk
 from tkutil import merge_megaconfig
 from viewable import Viewable, CustomView
 
-
 # parts
 BODY = "body"
 CANVAS = "canvas"
@@ -16,7 +15,7 @@ VERTICAL = "vertical"
 HORIZONTAL = "horizontal"
 
 
-class Scrollbox(tk.Frame):
+class ScrollBox(tk.Frame):
     """
     Scrollbox is a scrollable surface. You just need to use its property "box" as
     your layout's parent.
@@ -39,8 +38,6 @@ class Scrollbox(tk.Frame):
     def __init__(self,
                  master=None,
                  orient=VERTICAL,
-                 box_sticky="nswe",
-                 resizable_box=True,
                  megaconfig=None):
         """
         - master: widget parent. Example: an instance of tk.Frame
@@ -54,11 +51,11 @@ class Scrollbox(tk.Frame):
         """
         self.__megaconfig = merge_megaconfig(secondary=megaconfig)
         super().__init__(master=master,
-                         class_="Scrollbox",
+                         class_="ScrollBox",
                          cnf=self.__megaconfig.get(BODY))
         self.__orient = orient
-        self.__box_sticky = box_sticky
-        self.__resizable_box = resizable_box
+        self.__box_sticky = "nswe"  # unlisted from __init__ parameters
+        self.__resizable_box = True  # unlisted from __init__ parameters
         self.__canvas_options = None
         self.__canvas = None
         self.__box = None
@@ -249,6 +246,14 @@ class Scrollbox(tk.Frame):
                                              width=self.__canvas.winfo_width())
                 else:
                     self.__canvas.config(width=self.__box.winfo_width())
+            elif self.__orient is None:
+                if self.__resizable_box:
+                    self.__canvas.itemconfig(self.__box_id,
+                                             width=self.__canvas.winfo_width(),
+                                             height=self.__canvas.winfo_height())
+                else:
+                    self.__canvas.config(width=self.__box.winfo_width(),
+                                         height=self.__box.winfo_height())
             self.__canvas.config(scrollregion=self.__canvas.bbox("all"))
 
     def __on_enter_body(self, event):
@@ -275,15 +280,10 @@ class Scrollbox(tk.Frame):
 
 
 class Error(Exception):
-    def __init__(self, *args, **kwargs):
-        self.message = args[0] if args else ""
-        super().__init__(self.message)
-
-    def __str__(self):
-        return self.message
+    pass
 
 
-class _ScrollboxTest(Viewable):
+class _ScrollBoxTest(Viewable):
 
     def __init__(self, root):
         super().__init__()
@@ -297,7 +297,7 @@ class _ScrollboxTest(Viewable):
         pane_1.pack(side=tk.LEFT, padx=10,
                     pady=10, expand=1, fill=tk.BOTH)
         # Scrollbox 1
-        scrollbox_1 = Scrollbox(pane_1, orient=VERTICAL)
+        scrollbox_1 = ScrollBox(pane_1, orient=VERTICAL)
         scrollbox_1.pack(pady=5, expand=1, fill=tk.BOTH)
         # Button 1
         command = (lambda self=self, box=scrollbox_1.box, side=tk.TOP:
@@ -310,7 +310,7 @@ class _ScrollboxTest(Viewable):
         pane_2.pack(side=tk.LEFT, padx=10,
                     pady=10, expand=1, fill=tk.BOTH)
         # Scrollbox 2
-        scrollbox_2 = Scrollbox(pane_2, orient=HORIZONTAL)
+        scrollbox_2 = ScrollBox(pane_2, orient=HORIZONTAL)
         scrollbox_2.pack(pady=5, expand=1, fill=tk.BOTH)
         # Button 2
         command = (lambda self=self, box=scrollbox_2.box, side=tk.LEFT:
@@ -327,6 +327,6 @@ class _ScrollboxTest(Viewable):
 if __name__ == "__main__":
     root = tk.Tk()
     root.geometry("500x200+0+0")
-    scrollbox_test = _ScrollboxTest(root)
-    scrollbox_test.body.pack(fill=tk.BOTH, expand=1)
+    scrollbox_test = _ScrollBoxTest(root)
+    scrollbox_test.build_pack(fill=tk.BOTH, expand=1)
     root.mainloop()

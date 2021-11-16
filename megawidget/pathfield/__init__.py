@@ -10,7 +10,7 @@ BUTTON = "button"
 DIALOG = "dialog"
 
 
-class Pathentry(tk.Frame):
+class PathField(tk.Frame):
     """
     """
     def __init__(self,
@@ -20,20 +20,37 @@ class Pathentry(tk.Frame):
                  width=17,
                  title=None,
                  initialdir=None,
+                 initialfile=None,
+                 mustexist=None,
+                 defaultextension=None,
+                 filetypes=None,
                  megaconfig=None):
         """
         - master: widget parent. Example: an instance of tk.Frame
 
         """
-        cache = {ENTRY: {"width": width},
-                 DIALOG: {"initialdir": initialdir, "title": title}}
+        filetypes = filetypes if filetypes else []
+        cache = {ENTRY: {"width": width}}
+        if browse == "dir":
+            cache[DIALOG] = {"initialdir": initialdir, "title": title,
+                          "parent": master.winfo_toplevel(),
+                          "initialdir": initialdir,
+                          "mustexist": mustexist}
+        elif browse == "file":
+            cache[DIALOG] = {"initialdir": initialdir, "title": title,
+                          "parent": master.winfo_toplevel(), "filetypes": filetypes,
+                          "initialfile": initialfile,
+                          "defaultextension": defaultextension}
         self.__megaconfig = merge_megaconfig(primary=cache, secondary=megaconfig)
         super().__init__(master=master,
-                         class_="Pathentry",
+                         class_="PathField",
                          cnf=self.__megaconfig.get(BODY))
         self.__browse = browse
         self.__title = title
         self.__initialdir = initialdir
+        self.__initialfile = initialfile
+        self.__filetypes = filetypes
+        self.__defaultextension = defaultextension
         self.__entry = None
         self.__button = None
         self.__parts = {}
@@ -44,22 +61,58 @@ class Pathentry(tk.Frame):
     #                   PROPERTIES
     # ==============================================
     @property
+    def title(self):
+        return self.__title
+
+    @title.setter
+    def title(self, val):
+        self.__title = val
+
+    @property
+    def initialdir(self):
+        return self.__initialdir
+
+    @initialdir.setter
+    def initialdir(self, val):
+        self.__initialdir = val
+
+    @property
+    def initialfile(self):
+        return self.__initialfile
+
+    @initialfile.setter
+    def initialfile(self, val):
+        self.__initialfile = val
+
+    @property
+    def defaultextension(self):
+        return self.__defaultextension
+
+    @defaultextension.setter
+    def defaultextension(self, val):
+        self.__defaultextension = val
+
+    @property
+    def filetypes(self):
+        return self.__filetypes
+
+    @filetypes.setter
+    def filetypes(self, val):
+        self.__filetypes = val
+
+    @property
     def parts(self):
         """
         """
         return self.__parts
 
     @property
-    def string_var(self):
-        return self.__string_var
-
-    @property
     def path(self):
-        return self.__path
+        return self.__string_var.get()
 
     @path.setter
     def path(self, val):
-        self.__path = val
+        self.__string_var.set(val)
 
     def __setup(self):
         custom_view = CustomView(body=self,
@@ -75,8 +128,9 @@ class Pathentry(tk.Frame):
         self.__parts["entry"] = self.__entry
         self.__button = tk.Button(self, text="...",
                                   command=self.__on_click_button,
+                                  pady=0,
                                   cnf=self.__megaconfig.get(BUTTON))
-        self.__button.pack(side=tk.LEFT, padx=(2, 0), fill=tk.Y)
+        self.__button.pack(side=tk.LEFT, padx=(1, 0))
         self.__parts["button"] = self.__button
 
     def __on_map(self):
@@ -88,7 +142,7 @@ class Pathentry(tk.Frame):
     def __on_click_button(self):
         if self.__browse == "file":
             try:
-                filename = filedialog.askopenfilename(**self.__megaconfig.get(DIALOG, {}))
+                filename = filedialog.askopenfilename(**self.__megaconfig.get(DIALOG, dict()))
             except Exception as e:
                 return
             path = None
@@ -100,7 +154,7 @@ class Pathentry(tk.Frame):
                 path = ";".join(filename)
             if path:
                 self.__string_var.set(path)
-        else:
+        elif self.__browse == "dir":
             try:
                 filename = filedialog.askdirectory(**self.__megaconfig.get(DIALOG, {}))
             except Exception as e:
@@ -114,22 +168,19 @@ class Pathentry(tk.Frame):
                 path = ";".join(filename)
             if path:
                 self.__string_var.set(path)
+        else:
+            raise Error("Unknown browse option.")
         self.__entry.icursor("end")
 
 
 class Error(Exception):
-    def __init__(self, *args, **kwargs):
-        self.message = args[0] if args else ""
-        super().__init__(self.message)
-
-    def __str__(self):
-        return self.message
+    pass
 
 
 if __name__ == "__main__":
     root = tk.Tk()
     dialog_config = {"title": "Hello"}
-    pathentry_test = Pathentry(root, browse="dir",
+    pathfield_test = PathField(root, browse="file",
                                megaconfig={"dialog": dialog_config})
-    pathentry_test.pack(fill=tk.BOTH, expand=1)
+    pathfield_test.pack(side=tk.RIGHT)
     root.mainloop()

@@ -1,40 +1,44 @@
 import tkinter as tk
+import tkutil
 from viewable import Viewable, CustomView
 from tkutil import merge_megaconfig
-import tkutil
 
 
 # parts
 BODY = "body"
 LABEL_HEADER = "label_header"
 LABEL_MESSAGE = "label_message"
+FRAME_FOOTER = "frame_footer"
+BUTTON_CANCEL = "button_cancel"
+BUTTON_CONFIRM = "button_confirm"
 
 
-class Toast(tk.Toplevel):
+class Confirmation(tk.Toplevel):
     """
-    A toast is a dialog box with or without decoration
-    that is displayed for a given duration.
-
-    Any "click" action on the Toast's body will close it.
+    Confirmation is a dialog box to ask the user to confirm an action.
 
     Example:
+
         import tkinter as tk
-        from pyrustic.widget.toast import Toast
+        from megawidget import Confirmation
+
+        def my_handler(result):
+            print(result)
 
         root = tk.Tk()
-        toast = Toast(root, header="My Header", message="My Message")
-        toast.build()
+        confirmation = Confirmation(root, title="Confirmation", header="Confirmation",
+                        message="Do you really want to continue ?",
+                        handler=my_handler)
+        confirmation.build()
         root.mainloop()
 
     """
-
     def __init__(self,
                  master=None,
                  title=None,
                  header=None,
                  message=None,
-                 duration=1234,
-                 decoration=False,
+                 on_close=None,
                  geometry=None,
                  megaconfig=None):
         """
@@ -48,39 +52,40 @@ class Toast(tk.Toplevel):
 
         - message: the text to show as message
 
-        - duration: int, in milliseconds.
-            You can set None to duration to cancel the self-destroying timer
-
-        - decoration: True or False to allow Window decoration
+        - handler: a callback to be executed immediately after closing the dialog box.
+            This callback should accept a boolean positional argument.
+            True means Ok, confirmed.
 
         - geometry: str, as the dialog box is a toplevel (BODY),
          you can edit its geometry. Example: "500x300"
 
         - options: dictionary of widgets options
-            The widgets keys are: BODY, LABEL_HEADER, LABEL_MESSAGE.
+            The widgets keys are: BODY, LABEL_HEADER,
+             LABEL_MESSAGE, FRAME_FOOTER, BUTTON_CANCEL, BUTTON_CONFIRM.
 
             Example: Assume that you want to set the LABEL_MESSAGE's background to black
             and the BODY's background to red:
                 options = { BODY: {"background": "red"},
                             LABEL_MESSAGE: {"background": "black"} }
+
         """
         self.__megaconfig = merge_megaconfig(secondary=megaconfig)
         super().__init__(master=master,
-                         class_="Toast",
+                         class_="Confirmation",
                          cnf=self.__megaconfig.get(BODY))
         self.__title = title
         self.__header = header
         self.__message = message
-        self.__duration = duration
-        self.__decoration = decoration
+        self.__on_close = on_close
         self.__geometry = geometry
-        self.__cancel_id = None
         self.__parts = {}
+        self.__ok = False
+        # build
         self.__setup()
 
-    # ======================================
-    #            PROPERTIES
-    # ======================================
+    # ====================================
+    #           PROPERTIES
+    # ====================================
 
     @property
     def header(self):
@@ -91,26 +96,32 @@ class Toast(tk.Toplevel):
         return self.__message
 
     @property
-    def duration(self):
-        return self.__duration
+    def on_close(self):
+        return self.__on_close
 
     @property
-    def decoration(self):
-        return self.__decoration
+    def ok(self):
+        """
+        Returns True if user confirmed, else get False
+        """
+        return self.__ok
 
     @property
     def parts(self):
         """
-        Get the parts (widgets instances) used to build this Toast.
+        Get the parts (widgets instances) used to build this dialog.
 
         This property returns a dict. The keys are:
-            BODY, LABEL_HEADER, LABEL_MESSAGE,
+            BODY, LABEL_HEADER,
+            LABEL_MESSAGE, FRAME_FOOTER, BUTTON_CANCEL, BUTTON_CONFIRM
+
+        Warning: check the presence of key before usage
         """
         return self.__parts
 
-    # ======================================
-    #            LIFECYCLE
-    # ======================================
+    # ====================================
+    #               INTERNAL
+    # ====================================
     def __setup(self):
         custom_view = CustomView(body=self,
                                  builder=self.__build,
@@ -119,22 +130,23 @@ class Toast(tk.Toplevel):
         return custom_view.build()
 
     def __build(self):
-        if not self.__decoration:
-            self.overrideredirect(1)
+        self.title(self.__title)
+        self.resizable(0, 0)
+        #
+        #
         if self.__geometry:
             self.geometry(self.__geometry)
-        if self.__title:
-            self.title(self.__title)
-        self.bind("<Button-1>", self.__on_click, "+")
+        #
         if self.__header:
             label_header = tk.Label(self,
-                                    name=LABEL_HEADER,
                                     text=self.__header,
                                     anchor="w",
                                     justify=tk.LEFT,
+                                    name=LABEL_HEADER,
                                     cnf=self.__megaconfig.get(LABEL_HEADER))
             self.__parts[LABEL_HEADER] = label_header
-            label_header.pack(fill=tk.X, padx=10, pady=10)
+            label_header.pack(fill=tk.X, expand=1, anchor="w", pady=5, padx=5)
+        #
         if self.__message:
             label_message = tk.Label(self,
                                      name=LABEL_MESSAGE,
@@ -143,18 +155,44 @@ class Toast(tk.Toplevel):
                                      justify=tk.LEFT,
                                      cnf=self.__megaconfig.get(LABEL_MESSAGE))
             self.__parts[LABEL_MESSAGE] = label_message
-            label_message.pack(fill=tk.X, padx=10, pady=10)
+            label_message.pack(fill=tk.BOTH,
+                               expand=1, padx=5, pady=(5, 10))
+
+        #
+        frame_footer = tk.Frame(self, cnf=self.__megaconfig.get(FRAME_FOOTER))
+        self.__parts[FRAME_FOOTER] = frame_footer
+        frame_footer.pack(anchor="e", pady=(0, 2), padx=2)
+        #
+        button_confirm = tk.Button(frame_footer,
+                                   text="Confirmation",
+                                   name=BUTTON_CONFIRM,
+                                   command=self.__on_click_confirm,
+                                   cnf=self.__megaconfig.get(BUTTON_CONFIRM))
+        self.__parts[BUTTON_CONFIRM] = button_confirm
+        button_confirm.pack(side=tk.RIGHT)
+        #
+        button_cancel = tk.Button(frame_footer,
+                                  text="Cancel",
+                                  name=BUTTON_CANCEL,
+                                  command=self.__on_click_cancel,
+                                  cnf=self.__megaconfig.get(BUTTON_CANCEL))
+        self.__parts[BUTTON_CANCEL] = button_cancel
+        button_cancel.pack(side=tk.RIGHT, padx=(0, 2))
 
     def __on_map(self):
         tkutil.center_dialog_effect(self,
                                     within=self.master.winfo_toplevel())
-        if self.__duration is not None:
-            self.__cancel_id = self.after(self.__duration, self.destroy)
 
     def __on_destroy(self):
-        pass
+        if self.__on_close:
+            self.__on_close(self.__ok)
 
-    def __on_click(self, event):
+    def __on_click_cancel(self):
+        self.__ok = False
+        self.destroy()
+
+    def __on_click_confirm(self):
+        self.__ok = True
         self.destroy()
 
 
@@ -167,8 +205,7 @@ class Error(Exception):
         return self.message
 
 
-class _ToastTest(Viewable):
-
+class _ConfirmTest(Viewable):
     def __init__(self, root):
         super().__init__()
         self._root = root
@@ -176,19 +213,21 @@ class _ToastTest(Viewable):
 
     def _build(self):
         self._body = tk.Frame(self._root)
-        btn_launch = tk.Button(self._body, text="launch",
+        btn_launch = tk.Button(self._body, text="Launch",
                                command=self._on_click_launch)
         btn_launch.pack()
 
     def _on_click_launch(self):
-        Toast(self._body, title="Toast Title",
-              header="Header", message="This is the message",
-              duration=3000)
+        confirmation = Confirmation(self._body, title="Confirmation",
+                          header="Confirmation",
+                          message="Do you really want to continue ?\nPress ok to continue\nOr die !")
+        confirmation.wait_window()
+        print("Confirmation:", confirmation.ok)
 
 
 if __name__ == "__main__":
     root = tk.Tk()
     root.geometry("500x300+0+0")
-    toast_test = _ToastTest(root)
-    toast_test.body.pack()
+    confirm_test = _ConfirmTest(root)
+    confirm_test.build_pack()
     root.mainloop()

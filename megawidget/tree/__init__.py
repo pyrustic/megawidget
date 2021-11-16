@@ -2,7 +2,6 @@ import tkinter as tk
 from viewable import CustomView
 from tkutil import merge_megaconfig
 
-
 # parts
 BODY = "body"
 FRAME_NODE = "frame_node"
@@ -20,6 +19,7 @@ class Tree(tk.Frame):
     Scroll to the bottom of this file at the top-level script
     environment to see the usage of SimpleTree
     """
+
     def __init__(self,
                  master=None,
                  indent=50,
@@ -374,7 +374,6 @@ class Tree(tk.Frame):
             return True
         return False
 
-
     # ==============================================
     #                 INTERNAL
     # ==============================================
@@ -384,7 +383,7 @@ class Tree(tk.Frame):
                                  on_map=self.__on_map,
                                  on_destroy=self.__on_destroy)
         return custom_view.build()
-    
+
     def __build(self):
         pass
 
@@ -400,7 +399,7 @@ class Tree(tk.Frame):
             index = 0
         else:
             descendants_count = len([node for key, node in self.__nodes.items()
-                                  if node["parent"] == parent])
+                                     if node["parent"] == parent])
             # Case 2: non-root node with an index "end" or count root descendants
             if index == "end" or index == descendants_count:
                 if index == "end":
@@ -529,20 +528,20 @@ class Tree(tk.Frame):
                        "that returns a pyrustic.widget.tree.hook.Hook")
             raise Error(" ".join(message))
         builder = (lambda tree=self,
-                           node=node,
-                           frame=body,
-                           hook=hook:
-                    hook.build_node(tree, node, frame))
+                          node=node,
+                          frame=body,
+                          hook=hook:
+                   hook.build_node(tree, node, frame))
         on_map = (lambda tree=self,
-                           node=node,
-                           frame=body,
-                           hook=hook:
-                    hook.on_map_node(tree, node))
+                         node=node,
+                         frame=body,
+                         hook=hook:
+                  hook.on_map_node(tree, node))
         on_destroy = (lambda tree=self,
-                           node=node,
-                           frame=body,
-                           hook=hook:
-                    hook.on_destroy_node(tree, node))
+                             node=node,
+                             frame=body,
+                             hook=hook:
+                      hook.on_destroy_node(tree, node))
         view = CustomView(body=body, builder=builder,
                           on_map=on_map,
                           on_destroy=on_destroy)
@@ -580,8 +579,8 @@ class Error(Exception):
 
     def __str__(self):
         return self.message
-    
-    
+
+
 # ====================================
 #              DEMO
 # ====================================
@@ -630,6 +629,7 @@ class ExampleHook(Hook):
     def on_feed_node(self, tree, node, *args, **kwargs):
         pass
 
+
 def _populate_example(tree):
     #
     hub_id = tree.insert(title="Hub")
@@ -654,12 +654,13 @@ def _populate_example(tree):
     rabat_id = tree.insert(title="Rabat", parent=morocco_id, container=False)
     tokyo_id = tree.insert(title="Tokyo", parent=japan_id, container=False)
 
+
 if __name__ == "__main__":
-    from megawidget.scrollbox import Scrollbox
+    from megawidget.scrollbox import ScrollBox
 
     root = tk.Tk()
     root.geometry("500x500+0+0")
-    scrollbox = Scrollbox(root)
+    scrollbox = ScrollBox(root)
     scrollbox.pack(expand=1, fill=tk.BOTH)
     tree = Tree(scrollbox.box)
     tree.pack(side=tk.LEFT, anchor="nw")

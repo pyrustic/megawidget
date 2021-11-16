@@ -65,7 +65,7 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
     #TODO: add the parameter 'name' to all megawidgets parameters
     def __init__(self,
                  master=None,
-                 titles=None,
+                 titles=None,  # TODO replace this word with headers
                  data=None,
                  hidden_columns=None,
                  sorting=True,
@@ -757,12 +757,7 @@ def _check_option(option):
 
 
 class Error(Exception):
-    def __init__(self, *args, **kwargs):
-        self.message = args[0] if args else ""
-        super().__init__(self.message)
-
-    def __str__(self):
-        return self.message
+    pass
 
 
 if __name__ == "__main__":
