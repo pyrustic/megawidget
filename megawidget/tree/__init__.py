@@ -1,5 +1,6 @@
 import tkinter as tk
-from viewable import CustomView
+from megawidget import error
+from viewable import implement_lifecycle
 from tkutil import merge_megaconfig
 
 # parts
@@ -378,11 +379,8 @@ class Tree(tk.Frame):
     #                 INTERNAL
     # ==============================================
     def __setup(self):
-        custom_view = CustomView(body=self,
-                                 builder=self.__build,
-                                 on_map=self.__on_map,
-                                 on_destroy=self.__on_destroy)
-        return custom_view.build()
+        self.__build()
+        implement_lifecycle(body=self, on_map=self.__on_map, on_destroy=self.__on_destroy)
 
     def __build(self):
         pass
@@ -419,10 +417,10 @@ class Tree(tk.Frame):
         self.__nodes[node_id] = node
         if parent is None:
             self.__root = node
-        view = self.__get_view(frame_header, node.copy())
-        if view:
-            node["view"] = view
-            view.build()
+        lifecycle = self.__get_view(frame_header, node.copy())
+        if lifecycle:
+            node["view"] = lifecycle
+            lifecycle.builder()
         # Silently collapse
         if not expand:
             node["frame_box"].grid_remove()
@@ -526,7 +524,7 @@ class Tree(tk.Frame):
         if not isinstance(hook, Hook):
             message = ("The hook should be a callable",
                        "that returns a pyrustic.widget.tree.hook.Hook")
-            raise Error(" ".join(message))
+            raise error.Error(" ".join(message))
         builder = (lambda tree=self,
                           node=node,
                           frame=body,
@@ -542,13 +540,12 @@ class Tree(tk.Frame):
                              frame=body,
                              hook=hook:
                       hook.on_destroy_node(tree, node))
-        view = CustomView(body=body, builder=builder,
-                          on_map=on_map,
-                          on_destroy=on_destroy)
-        view.on_feed_node = hook.on_feed_node
-        view.on_expand_node = hook.on_expand_node
-        view.on_collapse_node = hook.on_collapse_node
-        return view
+        lifecycle = implement_lifecycle(body=body, on_map=on_map, on_destroy=on_destroy)
+        #lifecycle.builder = builder
+        #lifecycle.on_feed_node = hook.on_feed_node
+        #lifecycle.on_expand_node = hook.on_expand_node
+        #lifecycle.on_collapse_node = hook.on_collapse_node
+        return lifecycle
 
 
 class Hook:
@@ -570,15 +567,6 @@ class Hook:
 
     def on_collapse_node(self, tree, node):
         pass
-
-
-class Error(Exception):
-    def __init__(self, *args, **kwargs):
-        self.message = args[0] if args else ""
-        super().__init__(self.message)
-
-    def __str__(self):
-        return self.message
 
 
 # ====================================

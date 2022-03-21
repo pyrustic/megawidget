@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkutil import merge_megaconfig
-from viewable import Viewable, CustomView
+from megawidget import error
+from viewable import Viewable, implement_lifecycle
 
 # parts
 BODY = "body"
@@ -149,11 +150,8 @@ class ScrollBox(tk.Frame):
     # ==============================================
 
     def __setup(self):
-        custom_view = CustomView(body=self,
-                                 builder=self.__build,
-                                 on_map=self.__on_map,
-                                 on_destroy=self.__on_destroy)
-        return custom_view.build()
+        self.__build()
+        implement_lifecycle(body=self, on_map=self.__on_map, on_destroy=self.__on_destroy)
 
     def __build(self):
         self.bind("<Enter>", self.__on_enter_body, "+")
@@ -277,10 +275,6 @@ class ScrollBox(tk.Frame):
                 self.unbind(val)
         except Exception as e:
             pass
-
-
-class Error(Exception):
-    pass
 
 
 class _ScrollBoxTest(Viewable):

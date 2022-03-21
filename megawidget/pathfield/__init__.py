@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog
-from viewable import CustomView
+from megawidget import error
+from viewable import implement_lifecycle
 from tkutil import merge_megaconfig
 
 
@@ -115,11 +116,9 @@ class PathField(tk.Frame):
         self.__string_var.set(val)
 
     def __setup(self):
-        custom_view = CustomView(body=self,
-                                 builder=self.__build,
-                                 on_map=self.__on_map,
-                                 on_destroy=self.__on_destroy)
-        return custom_view.build()
+        self.__build()
+        implement_lifecycle(body=self, on_map=self.__on_map,
+                            on_destroy=self.__on_destroy)
 
     def __build(self):
         self.__entry = tk.Entry(self, textvariable=self.__string_var,
@@ -169,12 +168,8 @@ class PathField(tk.Frame):
             if path:
                 self.__string_var.set(path)
         else:
-            raise Error("Unknown browse option.")
+            raise error.Error("Unknown browse option.")
         self.__entry.icursor("end")
-
-
-class Error(Exception):
-    pass
 
 
 if __name__ == "__main__":

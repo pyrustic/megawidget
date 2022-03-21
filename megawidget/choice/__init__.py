@@ -1,7 +1,7 @@
 import tkinter as tk
 import tkutil
-from megawidget.scrollbox import ScrollBox
-from viewable import Viewable, CustomView
+from megawidget import error
+from viewable import Viewable, implement_lifecycle
 from tkutil import merge_megaconfig
 
 
@@ -164,11 +164,9 @@ class Choice(tk.Frame):
     #            INTERNAL
     # ======================================
     def __setup(self):
-        custom_view = CustomView(body=self,
-                                 builder=self.__build,
-                                 on_map=self.__on_map,
-                                 on_destroy=self.__on_destroy)
-        custom_view.build()
+        self.__build()
+        implement_lifecycle(body=self, on_map=self.__on_map,
+                            on_destroy=self.__on_destroy)
         self.__populate()
 
     def __build(self):
@@ -205,7 +203,7 @@ class Choice(tk.Frame):
                 elif self.__stacking == "vertical":
                     cache.pack(side=tk.TOP, anchor="w")
                 else:
-                    raise Error("Unknown stacking value")
+                    raise error.Error("Unknown stacking value")
                 #cache.pack(anchor="w", expand=1)
 
     def __on_map(self):
@@ -300,11 +298,9 @@ class ChoiceDialog(tk.Toplevel):
     #               INTERNAL
     # ====================================
     def __setup(self):
-        custom_view = CustomView(body=self,
-                                 builder=self.__build,
-                                 on_map=self.__on_map,
-                                 on_destroy=self.__on_destroy)
-        return custom_view.build()
+        self.__build()
+        implement_lifecycle(body=self, on_map=self.__on_map,
+                            on_destroy=self.__on_destroy)
 
     def __build(self):
         self.title(self.__title)
@@ -375,10 +371,6 @@ class ChoiceDialog(tk.Toplevel):
     def __on_click_confirm(self):
         self.__ok = True
         self.destroy()
-
-
-class Error(Exception):
-    pass
 
 
 class _ChoiceTest(Viewable):

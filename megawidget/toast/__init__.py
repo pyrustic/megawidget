@@ -1,6 +1,7 @@
 import tkinter as tk
 import tkutil
-from viewable import Viewable, CustomView
+from megawidget import error
+from viewable import Viewable, implement_lifecycle
 from tkutil import merge_megaconfig
 
 
@@ -112,11 +113,8 @@ class Toast(tk.Toplevel):
     #            LIFECYCLE
     # ======================================
     def __setup(self):
-        custom_view = CustomView(body=self,
-                                 builder=self.__build,
-                                 on_map=self.__on_map,
-                                 on_destroy=self.__on_destroy)
-        return custom_view.build()
+        self.__build()
+        implement_lifecycle(body=self, on_map=self.__on_map, on_destroy=self.__on_destroy)
 
     def __build(self):
         if not self.__decoration:
@@ -159,15 +157,6 @@ class Toast(tk.Toplevel):
 
     def __on_click(self, event):
         self.destroy()
-
-
-class Error(Exception):
-    def __init__(self, *args, **kwargs):
-        self.message = args[0] if args else ""
-        super().__init__(self.message)
-
-    def __str__(self):
-        return self.message
 
 
 class _ToastTest(Viewable):

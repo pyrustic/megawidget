@@ -1,6 +1,7 @@
 import tkinter as tk
 import operator
-from viewable import CustomView
+from megawidget import error
+from viewable import implement_lifecycle
 from tkutil import merge_megaconfig
 
 
@@ -169,7 +170,7 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
         self.__hsb_under_mouse = False
         # Sorry but the select_mode MULTIPLE is buggy
         if select_mode == MULTIPLE:
-            raise Error("Sorry but the selection mode MULTIPLE is buggy")
+            raise error.Error("Sorry but the selection mode MULTIPLE is buggy")
         self.__setup()
 
     # ==============================================
@@ -404,11 +405,9 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
     #                 PRIVATE METHODS
     # ==============================================
     def __setup(self):
-        custom_view = CustomView(body=self,
-                                 builder=self.__build,
-                                 on_map=self.__on_map,
-                                 on_destroy=self.__on_destroy)
-        return custom_view.build()
+        self.__build()
+        implement_lifecycle(body=self, on_map=self.__on_map,
+                            on_destroy=self.__on_destroy)
 
     def __build(self):
         # reset titles and data
@@ -678,7 +677,7 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
             data_sorted = self.__cache
             self.__cache = None
         else:
-            raise Error("Unknown sorting type")
+            raise error.Error("Unknown sorting type")
         self.__reset_data(data_sorted)
 
     def __table_sorter(self, data, index, count_columns, sorting=ASC):
@@ -698,13 +697,13 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
             for i, title in enumerate(titles):
                 self.__labels_titles_stringvars_cache[i].set(title)
         else:
-            raise Error("Incorrect length of titles")
+            raise error.Error("Incorrect length of titles")
 
     def __reset_data(self, data):
         if not data:
             return
         if not self.__titles:
-            raise Error("Please submit titles first !")
+            raise error.Error("Please submit titles first !")
         # check data
         self.__check_data_row_size(data)
         # clean listboxes
@@ -733,7 +732,7 @@ class Table(tk.Frame):  # TODO the select_mode MULTIPLE is buggy !
         regular_size = len(self.__titles) - len(self.__hidden_columns)
         for row in data:
             if (len(row) - len(self.__hidden_columns)) != regular_size:
-                raise Error("Invalid data size")
+                raise error.Error("Invalid data size")
         return True
 
     def __on_configure_background(self, event):
@@ -751,13 +750,9 @@ def _verify_options(column_options):
 def _check_option(option):
     if option in COLUMN_OPTIONS:
         return True
-    raise Error("The column option -" + option
+    raise error.Error("The column option -" + option
                                  + " doesn't exist. These are legal options for column: "
                                  + str(COLUMN_OPTIONS))
-
-
-class Error(Exception):
-    pass
 
 
 if __name__ == "__main__":

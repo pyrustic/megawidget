@@ -1,0 +1,4123 @@
+Back to [All Modules](https://github.com/pyrustic/megawidget/blob/master/docs/modules/README.md#readme)
+
+# Module Overview
+
+**megawidget.choice**
+ 
+No description
+
+> **Classes:** &nbsp; [Choice](https://github.com/pyrustic/megawidget/blob/master/docs/modules/content/megawidget.choice/content/classes/Choice.md#class-choice) &nbsp;&nbsp; [ChoiceDialog](https://github.com/pyrustic/megawidget/blob/master/docs/modules/content/megawidget.choice/content/classes/ChoiceDialog.md#class-choicedialog) &nbsp;&nbsp; [\_ChoiceTest](https://github.com/pyrustic/megawidget/blob/master/docs/modules/content/megawidget.choice/content/classes/_ChoiceTest.md#class-_choicetest)
+>
+> **Functions:** &nbsp; None
+>
+> **Constants:** &nbsp; BODY &nbsp;&nbsp; BUTTON_CANCEL &nbsp;&nbsp; BUTTON_CONTINUE &nbsp;&nbsp; CHECK &nbsp;&nbsp; CHECKBUTTONS &nbsp;&nbsp; FRAME_FOOTER &nbsp;&nbsp; FRAME_PANE &nbsp;&nbsp; LABEL_HEADER &nbsp;&nbsp; LABEL_MESSAGE &nbsp;&nbsp; RADIO &nbsp;&nbsp; RADIOBUTTONS &nbsp;&nbsp; SCROLLBOX
+
+# Class ChoiceDialog
+Toplevel widget, e.g. for dialogs.
+
+## Base Classes
+tkinter.Toplevel
+
+## Class Attributes
+\_last\_child\_ids (inherited from tkinter.Misc) &nbsp;&nbsp; \_noarg\_ (inherited from tkinter.Misc) &nbsp;&nbsp; \_subst\_format (inherited from tkinter.Misc) &nbsp;&nbsp; \_subst\_format\_str (inherited from tkinter.Misc) &nbsp;&nbsp; \_tclCommands (inherited from tkinter.Misc)
+
+## Class Properties
+|Property|Type|Description|Inherited from|
+|---|---|---|---|
+|_windowingsystem|getter|Internal function.|tkinter.Misc|
+|choice|getter|        ||
+|header|getter|None||
+|message|getter|None||
+|on_close|getter|None||
+|parts|getter|Get the parts (widgets instances) used to build this dialog.  This property returns a dict. The keys are:     BODY, LABEL_HEADER,     LABEL_MESSAGE, FRAME_FOOTER, BUTTON_CANCEL, BUTTON_CONFIRM  Warning: check the presence of key before usage||
+
+
+
+# All Methods
+[\_choicedialog\_\_build](#_ChoiceDialog__build) &nbsp;&nbsp; [\_choicedialog\_\_on\_click\_cancel](#_ChoiceDialog__on_click_cancel) &nbsp;&nbsp; [\_choicedialog\_\_on\_click\_confirm](#_ChoiceDialog__on_click_confirm) &nbsp;&nbsp; [\_choicedialog\_\_on\_destroy](#_ChoiceDialog__on_destroy) &nbsp;&nbsp; [\_choicedialog\_\_on\_map](#_ChoiceDialog__on_map) &nbsp;&nbsp; [\_choicedialog\_\_setup](#_ChoiceDialog__setup) &nbsp;&nbsp; [\_misc\_\_winfo\_getint](#_Misc__winfo_getint) &nbsp;&nbsp; [\_misc\_\_winfo\_parseitem](#_Misc__winfo_parseitem) &nbsp;&nbsp; [\_\_init\_\_](#__init__) &nbsp;&nbsp; [\_bind](#_bind) &nbsp;&nbsp; [\_configure](#_configure) &nbsp;&nbsp; [\_displayof](#_displayof) &nbsp;&nbsp; [\_do](#_do) &nbsp;&nbsp; [\_getboolean](#_getboolean) &nbsp;&nbsp; [\_getconfigure](#_getconfigure) &nbsp;&nbsp; [\_getconfigure1](#_getconfigure1) &nbsp;&nbsp; [\_getdoubles](#_getdoubles) &nbsp;&nbsp; [\_getints](#_getints) &nbsp;&nbsp; [\_grid\_configure](#_grid_configure) &nbsp;&nbsp; [\_gridconvvalue](#_gridconvvalue) &nbsp;&nbsp; [\_nametowidget](#_nametowidget) &nbsp;&nbsp; [\_options](#_options) &nbsp;&nbsp; [\_register](#_register) &nbsp;&nbsp; [\_report\_exception](#_report_exception) &nbsp;&nbsp; [\_root](#_root) &nbsp;&nbsp; [\_setup](#_setup) &nbsp;&nbsp; [\_substitute](#_substitute) &nbsp;&nbsp; [after](#after) &nbsp;&nbsp; [after\_cancel](#after_cancel) &nbsp;&nbsp; [after\_idle](#after_idle) &nbsp;&nbsp; [anchor](#anchor) &nbsp;&nbsp; [aspect](#aspect) &nbsp;&nbsp; [attributes](#attributes) &nbsp;&nbsp; [bbox](#bbox) &nbsp;&nbsp; [bell](#bell) &nbsp;&nbsp; [bind](#bind) &nbsp;&nbsp; [bind\_all](#bind_all) &nbsp;&nbsp; [bind\_class](#bind_class) &nbsp;&nbsp; [bindtags](#bindtags) &nbsp;&nbsp; [cget](#cget) &nbsp;&nbsp; [client](#client) &nbsp;&nbsp; [clipboard\_append](#clipboard_append) &nbsp;&nbsp; [clipboard\_clear](#clipboard_clear) &nbsp;&nbsp; [clipboard\_get](#clipboard_get) &nbsp;&nbsp; [colormapwindows](#colormapwindows) &nbsp;&nbsp; [columnconfigure](#columnconfigure) &nbsp;&nbsp; [command](#command) &nbsp;&nbsp; [config](#config) &nbsp;&nbsp; [configure](#configure) &nbsp;&nbsp; [deiconify](#deiconify) &nbsp;&nbsp; [deletecommand](#deletecommand) &nbsp;&nbsp; [destroy](#destroy) &nbsp;&nbsp; [event\_add](#event_add) &nbsp;&nbsp; [event\_delete](#event_delete) &nbsp;&nbsp; [event\_generate](#event_generate) &nbsp;&nbsp; [event\_info](#event_info) &nbsp;&nbsp; [focus](#focus) &nbsp;&nbsp; [focus\_displayof](#focus_displayof) &nbsp;&nbsp; [focus\_force](#focus_force) &nbsp;&nbsp; [focus\_get](#focus_get) &nbsp;&nbsp; [focus\_lastfor](#focus_lastfor) &nbsp;&nbsp; [focus\_set](#focus_set) &nbsp;&nbsp; [focusmodel](#focusmodel) &nbsp;&nbsp; [forget](#forget) &nbsp;&nbsp; [frame](#frame) &nbsp;&nbsp; [geometry](#geometry) &nbsp;&nbsp; [getboolean](#getboolean) &nbsp;&nbsp; [getdouble](#getdouble) &nbsp;&nbsp; [getint](#getint) &nbsp;&nbsp; [getvar](#getvar) &nbsp;&nbsp; [grab\_current](#grab_current) &nbsp;&nbsp; [grab\_release](#grab_release) &nbsp;&nbsp; [grab\_set](#grab_set) &nbsp;&nbsp; [grab\_set\_global](#grab_set_global) &nbsp;&nbsp; [grab\_status](#grab_status) &nbsp;&nbsp; [grid](#grid) &nbsp;&nbsp; [grid\_anchor](#grid_anchor) &nbsp;&nbsp; [grid\_bbox](#grid_bbox) &nbsp;&nbsp; [grid\_columnconfigure](#grid_columnconfigure) &nbsp;&nbsp; [grid\_location](#grid_location) &nbsp;&nbsp; [grid\_propagate](#grid_propagate) &nbsp;&nbsp; [grid\_rowconfigure](#grid_rowconfigure) &nbsp;&nbsp; [grid\_size](#grid_size) &nbsp;&nbsp; [grid\_slaves](#grid_slaves) &nbsp;&nbsp; [group](#group) &nbsp;&nbsp; [iconbitmap](#iconbitmap) &nbsp;&nbsp; [iconify](#iconify) &nbsp;&nbsp; [iconmask](#iconmask) &nbsp;&nbsp; [iconname](#iconname) &nbsp;&nbsp; [iconphoto](#iconphoto) &nbsp;&nbsp; [iconposition](#iconposition) &nbsp;&nbsp; [iconwindow](#iconwindow) &nbsp;&nbsp; [image\_names](#image_names) &nbsp;&nbsp; [image\_types](#image_types) &nbsp;&nbsp; [keys](#keys) &nbsp;&nbsp; [lift](#lift) &nbsp;&nbsp; [lower](#lower) &nbsp;&nbsp; [mainloop](#mainloop) &nbsp;&nbsp; [manage](#manage) &nbsp;&nbsp; [maxsize](#maxsize) &nbsp;&nbsp; [minsize](#minsize) &nbsp;&nbsp; [nametowidget](#nametowidget) &nbsp;&nbsp; [option\_add](#option_add) &nbsp;&nbsp; [option\_clear](#option_clear) &nbsp;&nbsp; [option\_get](#option_get) &nbsp;&nbsp; [option\_readfile](#option_readfile) &nbsp;&nbsp; [overrideredirect](#overrideredirect) &nbsp;&nbsp; [pack\_propagate](#pack_propagate) &nbsp;&nbsp; [pack\_slaves](#pack_slaves) &nbsp;&nbsp; [place\_slaves](#place_slaves) &nbsp;&nbsp; [positionfrom](#positionfrom) &nbsp;&nbsp; [propagate](#propagate) &nbsp;&nbsp; [protocol](#protocol) &nbsp;&nbsp; [quit](#quit) &nbsp;&nbsp; [register](#register) &nbsp;&nbsp; [resizable](#resizable) &nbsp;&nbsp; [rowconfigure](#rowconfigure) &nbsp;&nbsp; [selection\_clear](#selection_clear) &nbsp;&nbsp; [selection\_get](#selection_get) &nbsp;&nbsp; [selection\_handle](#selection_handle) &nbsp;&nbsp; [selection\_own](#selection_own) &nbsp;&nbsp; [selection\_own\_get](#selection_own_get) &nbsp;&nbsp; [send](#send) &nbsp;&nbsp; [setvar](#setvar) &nbsp;&nbsp; [size](#size) &nbsp;&nbsp; [sizefrom](#sizefrom) &nbsp;&nbsp; [slaves](#slaves) &nbsp;&nbsp; [state](#state) &nbsp;&nbsp; [title](#title) &nbsp;&nbsp; [tk\_bisque](#tk_bisque) &nbsp;&nbsp; [tk\_focusfollowsmouse](#tk_focusFollowsMouse) &nbsp;&nbsp; [tk\_focusnext](#tk_focusNext) &nbsp;&nbsp; [tk\_focusprev](#tk_focusPrev) &nbsp;&nbsp; [tk\_setpalette](#tk_setPalette) &nbsp;&nbsp; [tk\_strictmotif](#tk_strictMotif) &nbsp;&nbsp; [tkraise](#tkraise) &nbsp;&nbsp; [transient](#transient) &nbsp;&nbsp; [unbind](#unbind) &nbsp;&nbsp; [unbind\_all](#unbind_all) &nbsp;&nbsp; [unbind\_class](#unbind_class) &nbsp;&nbsp; [update](#update) &nbsp;&nbsp; [update\_idletasks](#update_idletasks) &nbsp;&nbsp; [wait\_variable](#wait_variable) &nbsp;&nbsp; [wait\_visibility](#wait_visibility) &nbsp;&nbsp; [wait\_window](#wait_window) &nbsp;&nbsp; [waitvar](#waitvar) &nbsp;&nbsp; [winfo\_atom](#winfo_atom) &nbsp;&nbsp; [winfo\_atomname](#winfo_atomname) &nbsp;&nbsp; [winfo\_cells](#winfo_cells) &nbsp;&nbsp; [winfo\_children](#winfo_children) &nbsp;&nbsp; [winfo\_class](#winfo_class) &nbsp;&nbsp; [winfo\_colormapfull](#winfo_colormapfull) &nbsp;&nbsp; [winfo\_containing](#winfo_containing) &nbsp;&nbsp; [winfo\_depth](#winfo_depth) &nbsp;&nbsp; [winfo\_exists](#winfo_exists) &nbsp;&nbsp; [winfo\_fpixels](#winfo_fpixels) &nbsp;&nbsp; [winfo\_geometry](#winfo_geometry) &nbsp;&nbsp; [winfo\_height](#winfo_height) &nbsp;&nbsp; [winfo\_id](#winfo_id) &nbsp;&nbsp; [winfo\_interps](#winfo_interps) &nbsp;&nbsp; [winfo\_ismapped](#winfo_ismapped) &nbsp;&nbsp; [winfo\_manager](#winfo_manager) &nbsp;&nbsp; [winfo\_name](#winfo_name) &nbsp;&nbsp; [winfo\_parent](#winfo_parent) &nbsp;&nbsp; [winfo\_pathname](#winfo_pathname) &nbsp;&nbsp; [winfo\_pixels](#winfo_pixels) &nbsp;&nbsp; [winfo\_pointerx](#winfo_pointerx) &nbsp;&nbsp; [winfo\_pointerxy](#winfo_pointerxy) &nbsp;&nbsp; [winfo\_pointery](#winfo_pointery) &nbsp;&nbsp; [winfo\_reqheight](#winfo_reqheight) &nbsp;&nbsp; [winfo\_reqwidth](#winfo_reqwidth) &nbsp;&nbsp; [winfo\_rgb](#winfo_rgb) &nbsp;&nbsp; [winfo\_rootx](#winfo_rootx) &nbsp;&nbsp; [winfo\_rooty](#winfo_rooty) &nbsp;&nbsp; [winfo\_screen](#winfo_screen) &nbsp;&nbsp; [winfo\_screencells](#winfo_screencells) &nbsp;&nbsp; [winfo\_screendepth](#winfo_screendepth) &nbsp;&nbsp; [winfo\_screenheight](#winfo_screenheight) &nbsp;&nbsp; [winfo\_screenmmheight](#winfo_screenmmheight) &nbsp;&nbsp; [winfo\_screenmmwidth](#winfo_screenmmwidth) &nbsp;&nbsp; [winfo\_screenvisual](#winfo_screenvisual) &nbsp;&nbsp; [winfo\_screenwidth](#winfo_screenwidth) &nbsp;&nbsp; [winfo\_server](#winfo_server) &nbsp;&nbsp; [winfo\_toplevel](#winfo_toplevel) &nbsp;&nbsp; [winfo\_viewable](#winfo_viewable) &nbsp;&nbsp; [winfo\_visual](#winfo_visual) &nbsp;&nbsp; [winfo\_visualid](#winfo_visualid) &nbsp;&nbsp; [winfo\_visualsavailable](#winfo_visualsavailable) &nbsp;&nbsp; [winfo\_vrootheight](#winfo_vrootheight) &nbsp;&nbsp; [winfo\_vrootwidth](#winfo_vrootwidth) &nbsp;&nbsp; [winfo\_vrootx](#winfo_vrootx) &nbsp;&nbsp; [winfo\_vrooty](#winfo_vrooty) &nbsp;&nbsp; [winfo\_width](#winfo_width) &nbsp;&nbsp; [winfo\_x](#winfo_x) &nbsp;&nbsp; [winfo\_y](#winfo_y) &nbsp;&nbsp; [withdraw](#withdraw) &nbsp;&nbsp; [wm\_aspect](#wm_aspect) &nbsp;&nbsp; [wm\_attributes](#wm_attributes) &nbsp;&nbsp; [wm\_client](#wm_client) &nbsp;&nbsp; [wm\_colormapwindows](#wm_colormapwindows) &nbsp;&nbsp; [wm\_command](#wm_command) &nbsp;&nbsp; [wm\_deiconify](#wm_deiconify) &nbsp;&nbsp; [wm\_focusmodel](#wm_focusmodel) &nbsp;&nbsp; [wm\_forget](#wm_forget) &nbsp;&nbsp; [wm\_frame](#wm_frame) &nbsp;&nbsp; [wm\_geometry](#wm_geometry) &nbsp;&nbsp; [wm\_grid](#wm_grid) &nbsp;&nbsp; [wm\_group](#wm_group) &nbsp;&nbsp; [wm\_iconbitmap](#wm_iconbitmap) &nbsp;&nbsp; [wm\_iconify](#wm_iconify) &nbsp;&nbsp; [wm\_iconmask](#wm_iconmask) &nbsp;&nbsp; [wm\_iconname](#wm_iconname) &nbsp;&nbsp; [wm\_iconphoto](#wm_iconphoto) &nbsp;&nbsp; [wm\_iconposition](#wm_iconposition) &nbsp;&nbsp; [wm\_iconwindow](#wm_iconwindow) &nbsp;&nbsp; [wm\_manage](#wm_manage) &nbsp;&nbsp; [wm\_maxsize](#wm_maxsize) &nbsp;&nbsp; [wm\_minsize](#wm_minsize) &nbsp;&nbsp; [wm\_overrideredirect](#wm_overrideredirect) &nbsp;&nbsp; [wm\_positionfrom](#wm_positionfrom) &nbsp;&nbsp; [wm\_protocol](#wm_protocol) &nbsp;&nbsp; [wm\_resizable](#wm_resizable) &nbsp;&nbsp; [wm\_sizefrom](#wm_sizefrom) &nbsp;&nbsp; [wm\_state](#wm_state) &nbsp;&nbsp; [wm\_title](#wm_title) &nbsp;&nbsp; [wm\_transient](#wm_transient) &nbsp;&nbsp; [wm\_withdraw](#wm_withdraw)
+
+## \_ChoiceDialog\_\_build
+None
+
+
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_ChoiceDialog\_\_on\_click\_cancel
+None
+
+
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_ChoiceDialog\_\_on\_click\_confirm
+None
+
+
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_ChoiceDialog\_\_on\_destroy
+None
+
+
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_ChoiceDialog\_\_on\_map
+None
+
+
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_ChoiceDialog\_\_setup
+None
+
+
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_Misc\_\_winfo\_getint
+Internal function.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, x)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_Misc\_\_winfo\_parseitem
+Internal function.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, t)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_\_init\_\_
+        
+
+
+
+**Signature:** (self, master=None, title=None, header=None, message=None, items=None, selection=None, flavor='radio', on\_close=None, geometry=None, megaconfig=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_bind
+Internal function.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, what, sequence, func, add, needcleanup=1)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_configure
+Internal function.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, cmd, cnf, kw)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_displayof
+Internal function.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, displayof)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_do
+None
+
+**Inherited from:** tkinter.BaseWidget
+
+**Signature:** (self, name, args=())
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_getboolean
+Internal function.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, string)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_getconfigure
+Call Tcl configure command and return the result as a dict.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, \*args)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_getconfigure1
+None
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, \*args)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_getdoubles
+Internal function.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, string)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_getints
+Internal function.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, string)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_grid\_configure
+Internal function.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, command, index, cnf, kw)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_gridconvvalue
+None
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, value)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_nametowidget
+Return the Tkinter instance of a widget identified by
+its Tcl name NAME.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, name)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_options
+Internal function.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, cnf, kw=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_register
+Return a newly created Tcl function. If this
+function is called, the Python function FUNC will
+be executed. An optional function SUBST can
+be given which will be executed before FUNC.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, func, subst=None, needcleanup=1)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_report\_exception
+Internal function.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_root
+Internal function.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_setup
+Internal function. Sets up information about children.
+
+**Inherited from:** tkinter.BaseWidget
+
+**Signature:** (self, master, cnf)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## \_substitute
+Internal function.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, \*args)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## after
+Call function once after given time.
+
+MS specifies the time in milliseconds. FUNC gives the
+function which shall be called. Additional parameters
+are given as parameters to the function call.  Return
+identifier to cancel scheduling with after_cancel.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, ms, func=None, \*args)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## after\_cancel
+Cancel scheduling of function identified with ID.
+
+Identifier returned by after or after_idle must be
+given as first parameter.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, id)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## after\_idle
+Call FUNC once if the Tcl main loop has no event to
+process.
+
+Return an identifier to cancel the scheduling with
+after_cancel.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, func, \*args)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## anchor
+The anchor value controls how to place the grid within the
+master when no row/column has any weight.
+
+The default anchor is nw.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, anchor=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## aspect
+Instruct the window manager to set the aspect ratio (width/height)
+of this widget to be between MINNUMER/MINDENOM and MAXNUMER/MAXDENOM. Return a tuple
+of the actual values if no argument is given.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, minNumer=None, minDenom=None, maxNumer=None, maxDenom=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## attributes
+This subcommand returns or sets platform specific attributes
+
+The first form returns a list of the platform specific flags and
+their values. The second form returns the value for the specific
+option. The third form sets one or more of the values. The values
+are as follows:
+
+On Windows, -disabled gets or sets whether the window is in a
+disabled state. -toolwindow gets or sets the style of the window
+to toolwindow (as defined in the MSDN). -topmost gets or sets
+whether this is a topmost window (displays above all other
+windows).
+
+On Macintosh, XXXXX
+
+On Unix, there are currently no special attribute values.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, \*args)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## bbox
+Return a tuple of integer coordinates for the bounding
+box of this widget controlled by the geometry manager grid.
+
+If COLUMN, ROW is given the bounding box applies from
+the cell with row and column 0 to the specified
+cell. If COL2 and ROW2 are given the bounding box
+starts at that cell.
+
+The returned integers specify the offset of the upper left
+corner in the master widget and the width and height.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, column=None, row=None, col2=None, row2=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## bell
+Ring a display's bell.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, displayof=0)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## bind
+Bind to this widget at event SEQUENCE a call to function FUNC.
+
+SEQUENCE is a string of concatenated event
+patterns. An event pattern is of the form
+<MODIFIER-MODIFIER-TYPE-DETAIL> where MODIFIER is one
+of Control, Mod2, M2, Shift, Mod3, M3, Lock, Mod4, M4,
+Button1, B1, Mod5, M5 Button2, B2, Meta, M, Button3,
+B3, Alt, Button4, B4, Double, Button5, B5 Triple,
+Mod1, M1. TYPE is one of Activate, Enter, Map,
+ButtonPress, Button, Expose, Motion, ButtonRelease
+FocusIn, MouseWheel, Circulate, FocusOut, Property,
+Colormap, Gravity Reparent, Configure, KeyPress, Key,
+Unmap, Deactivate, KeyRelease Visibility, Destroy,
+Leave and DETAIL is the button number for ButtonPress,
+ButtonRelease and DETAIL is the Keysym for KeyPress and
+KeyRelease. Examples are
+<Control-Button-1> for pressing Control and mouse button 1 or
+<Alt-A> for pressing A and the Alt key (KeyPress can be omitted).
+An event pattern can also be a virtual event of the form
+<<AString>> where AString can be arbitrary. This
+event can be generated by event_generate.
+If events are concatenated they must appear shortly
+after each other.
+
+FUNC will be called if the event sequence occurs with an
+instance of Event as argument. If the return value of FUNC is
+"break" no further bound function is invoked.
+
+An additional boolean parameter ADD specifies whether FUNC will
+be called additionally to the other bound function or whether
+it will replace the previous function.
+
+Bind will return an identifier to allow deletion of the bound function with
+unbind without memory leak.
+
+If FUNC or SEQUENCE is omitted the bound function or list
+of bound events are returned.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, sequence=None, func=None, add=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## bind\_all
+Bind to all widgets at an event SEQUENCE a call to function FUNC.
+An additional boolean parameter ADD specifies whether FUNC will
+be called additionally to the other bound function or whether
+it will replace the previous function. See bind for the return value.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, sequence=None, func=None, add=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## bind\_class
+Bind to widgets with bindtag CLASSNAME at event
+SEQUENCE a call of function FUNC. An additional
+boolean parameter ADD specifies whether FUNC will be
+called additionally to the other bound function or
+whether it will replace the previous function. See bind for
+the return value.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, className, sequence=None, func=None, add=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## bindtags
+Set or get the list of bindtags for this widget.
+
+With no argument return the list of all bindtags associated with
+this widget. With a list of strings as argument the bindtags are
+set to this list. The bindtags determine in which order events are
+processed (see bind).
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, tagList=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## cget
+Return the resource value for a KEY given as string.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, key)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## client
+Store NAME in WM_CLIENT_MACHINE property of this widget. Return
+current value.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, name=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## clipboard\_append
+Append STRING to the Tk clipboard.
+
+A widget specified at the optional displayof keyword
+argument specifies the target display. The clipboard
+can be retrieved with selection_get.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, string, \*\*kw)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## clipboard\_clear
+Clear the data in the Tk clipboard.
+
+A widget specified for the optional displayof keyword
+argument specifies the target display.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, \*\*kw)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## clipboard\_get
+Retrieve data from the clipboard on window's display.
+
+The window keyword defaults to the root window of the Tkinter
+application.
+
+The type keyword specifies the form in which the data is
+to be returned and should be an atom name such as STRING
+or FILE_NAME.  Type defaults to STRING, except on X11, where the default
+is to try UTF8_STRING and fall back to STRING.
+
+This command is equivalent to:
+
+selection_get(CLIPBOARD)
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, \*\*kw)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## colormapwindows
+Store list of window names (WLIST) into WM_COLORMAPWINDOWS property
+of this widget. This list contains windows whose colormaps differ from their
+parents. Return current list of widgets if WLIST is empty.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, \*wlist)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## columnconfigure
+Configure column INDEX of a grid.
+
+Valid resources are minsize (minimum size of the column),
+weight (how much does additional space propagate to this column)
+and pad (how much space to let additionally).
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, index, cnf={}, \*\*kw)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## command
+Store VALUE in WM_COMMAND property. It is the command
+which shall be used to invoke the application. Return current
+command if VALUE is None.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, value=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## config
+Configure resources of a widget.
+
+The values for resources are specified as keyword
+arguments. To get an overview about
+the allowed keyword arguments call the method keys.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, cnf=None, \*\*kw)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## configure
+Configure resources of a widget.
+
+The values for resources are specified as keyword
+arguments. To get an overview about
+the allowed keyword arguments call the method keys.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, cnf=None, \*\*kw)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## deiconify
+Deiconify this widget. If it was never mapped it will not be mapped.
+On Windows it will raise this widget and give it the focus.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## deletecommand
+Internal function.
+
+Delete the Tcl command provided in NAME.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, name)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## destroy
+Destroy this and all descendants widgets.
+
+**Inherited from:** tkinter.BaseWidget
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## event\_add
+Bind a virtual event VIRTUAL (of the form <<Name>>)
+to an event SEQUENCE such that the virtual event is triggered
+whenever SEQUENCE occurs.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, virtual, \*sequences)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## event\_delete
+Unbind a virtual event VIRTUAL from SEQUENCE.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, virtual, \*sequences)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## event\_generate
+Generate an event SEQUENCE. Additional
+keyword arguments specify parameter of the event
+(e.g. x, y, rootx, rooty).
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, sequence, \*\*kw)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## event\_info
+Return a list of all virtual events or the information
+about the SEQUENCE bound to the virtual event VIRTUAL.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, virtual=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## focus
+Direct input focus to this widget.
+
+If the application currently does not have the focus
+this widget will get the focus if the application gets
+the focus through the window manager.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## focus\_displayof
+Return the widget which has currently the focus on the
+display where this widget is located.
+
+Return None if the application does not have the focus.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## focus\_force
+Direct input focus to this widget even if the
+application does not have the focus. Use with
+caution!
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## focus\_get
+Return the widget which has currently the focus in the
+application.
+
+Use focus_displayof to allow working with several
+displays. Return None if application does not have
+the focus.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## focus\_lastfor
+Return the widget which would have the focus if top level
+for this widget gets the focus from the window manager.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## focus\_set
+Direct input focus to this widget.
+
+If the application currently does not have the focus
+this widget will get the focus if the application gets
+the focus through the window manager.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## focusmodel
+Set focus model to MODEL. "active" means that this widget will claim
+the focus itself, "passive" means that the window manager shall give
+the focus. Return current focus model if MODEL is None.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, model=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## forget
+The window will be unmapped from the screen and will no longer
+be managed by wm. toplevel windows will be treated like frame
+windows once they are no longer managed by wm, however, the menu
+option configuration will be remembered and the menus will return
+once the widget is managed again.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, window)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## frame
+Return identifier for decorative frame of this widget if present.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## geometry
+Set geometry to NEWGEOMETRY of the form =widthxheight+x+y. Return
+current value if None is given.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, newGeometry=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## getboolean
+Return a boolean value for Tcl boolean values true and false given as parameter.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, s)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## getdouble
+None
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, s)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## getint
+None
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, s)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## getvar
+Return value of Tcl variable NAME.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, name='PY\_VAR')
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## grab\_current
+Return widget which has currently the grab in this application
+or None.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## grab\_release
+Release grab for this widget if currently set.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## grab\_set
+Set grab for this widget.
+
+A grab directs all events to this and descendant
+widgets in the application.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## grab\_set\_global
+Set global grab for this widget.
+
+A global grab directs all events to this and
+descendant widgets on the display. Use with caution -
+other applications do not get events anymore.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## grab\_status
+Return None, "local" or "global" if this widget has
+no, a local or a global grab.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## grid
+Instruct the window manager that this widget shall only be
+resized on grid boundaries. WIDTHINC and HEIGHTINC are the width and
+height of a grid unit in pixels. BASEWIDTH and BASEHEIGHT are the
+number of grid units requested in Tk_GeometryRequest.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, baseWidth=None, baseHeight=None, widthInc=None, heightInc=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## grid\_anchor
+The anchor value controls how to place the grid within the
+master when no row/column has any weight.
+
+The default anchor is nw.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, anchor=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## grid\_bbox
+Return a tuple of integer coordinates for the bounding
+box of this widget controlled by the geometry manager grid.
+
+If COLUMN, ROW is given the bounding box applies from
+the cell with row and column 0 to the specified
+cell. If COL2 and ROW2 are given the bounding box
+starts at that cell.
+
+The returned integers specify the offset of the upper left
+corner in the master widget and the width and height.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, column=None, row=None, col2=None, row2=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## grid\_columnconfigure
+Configure column INDEX of a grid.
+
+Valid resources are minsize (minimum size of the column),
+weight (how much does additional space propagate to this column)
+and pad (how much space to let additionally).
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, index, cnf={}, \*\*kw)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## grid\_location
+Return a tuple of column and row which identify the cell
+at which the pixel at position X and Y inside the master
+widget is located.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, x, y)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## grid\_propagate
+Set or get the status for propagation of geometry information.
+
+A boolean argument specifies whether the geometry information
+of the slaves will determine the size of this widget. If no argument
+is given, the current setting will be returned.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, flag=['\_noarg\_'])
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## grid\_rowconfigure
+Configure row INDEX of a grid.
+
+Valid resources are minsize (minimum size of the row),
+weight (how much does additional space propagate to this row)
+and pad (how much space to let additionally).
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, index, cnf={}, \*\*kw)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## grid\_size
+Return a tuple of the number of column and rows in the grid.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## grid\_slaves
+Return a list of all slaves of this widget
+in its packing order.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, row=None, column=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## group
+Set the group leader widgets for related widgets to PATHNAME. Return
+the group leader of this widget if None is given.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, pathName=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## iconbitmap
+Set bitmap for the iconified widget to BITMAP. Return
+the bitmap if None is given.
+
+Under Windows, the DEFAULT parameter can be used to set the icon
+for the widget and any descendents that don't have an icon set
+explicitly.  DEFAULT can be the relative path to a .ico file
+(example: root.iconbitmap(default='myicon.ico') ).  See Tk
+documentation for more information.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, bitmap=None, default=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## iconify
+Display widget as icon.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## iconmask
+Set mask for the icon bitmap of this widget. Return the
+mask if None is given.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, bitmap=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## iconname
+Set the name of the icon for this widget. Return the name if
+None is given.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, newName=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## iconphoto
+Sets the titlebar icon for this window based on the named photo
+images passed through args. If default is True, this is applied to
+all future created toplevels as well.
+
+The data in the images is taken as a snapshot at the time of
+invocation. If the images are later changed, this is not reflected
+to the titlebar icons. Multiple images are accepted to allow
+different images sizes to be provided. The window manager may scale
+provided icons to an appropriate size.
+
+On Windows, the images are packed into a Windows icon structure.
+This will override an icon specified to wm_iconbitmap, and vice
+versa.
+
+On X, the images are arranged into the _NET_WM_ICON X property,
+which most modern window managers support. An icon specified by
+wm_iconbitmap may exist simultaneously.
+
+On Macintosh, this currently does nothing.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, default=False, \*args)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## iconposition
+Set the position of the icon of this widget to X and Y. Return
+a tuple of the current values of X and X if None is given.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, x=None, y=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## iconwindow
+Set widget PATHNAME to be displayed instead of icon. Return the current
+value if None is given.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, pathName=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## image\_names
+Return a list of all existing image names.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## image\_types
+Return a list of all available image types (e.g. photo bitmap).
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## keys
+Return a list of all resource names of this widget.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## lift
+Raise this widget in the stacking order.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, aboveThis=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## lower
+Lower this widget in the stacking order.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, belowThis=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## mainloop
+Call the mainloop of Tk.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, n=0)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## manage
+The widget specified will become a stand alone top-level window.
+The window will be decorated with the window managers title bar,
+etc.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, widget)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## maxsize
+Set max WIDTH and HEIGHT for this widget. If the window is gridded
+the values are given in grid units. Return the current values if None
+is given.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, width=None, height=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## minsize
+Set min WIDTH and HEIGHT for this widget. If the window is gridded
+the values are given in grid units. Return the current values if None
+is given.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, width=None, height=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## nametowidget
+Return the Tkinter instance of a widget identified by
+its Tcl name NAME.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, name)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## option\_add
+Set a VALUE (second parameter) for an option
+PATTERN (first parameter).
+
+An optional third parameter gives the numeric priority
+(defaults to 80).
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, pattern, value, priority=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## option\_clear
+Clear the option database.
+
+It will be reloaded if option_add is called.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## option\_get
+Return the value for an option NAME for this widget
+with CLASSNAME.
+
+Values with higher priority override lower values.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, name, className)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## option\_readfile
+Read file FILENAME into the option database.
+
+An optional second parameter gives the numeric
+priority.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, fileName, priority=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## overrideredirect
+Instruct the window manager to ignore this widget
+if BOOLEAN is given with 1. Return the current value if None
+is given.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, boolean=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## pack\_propagate
+Set or get the status for propagation of geometry information.
+
+A boolean argument specifies whether the geometry information
+of the slaves will determine the size of this widget. If no argument
+is given the current setting will be returned.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, flag=['\_noarg\_'])
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## pack\_slaves
+Return a list of all slaves of this widget
+in its packing order.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## place\_slaves
+Return a list of all slaves of this widget
+in its packing order.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## positionfrom
+Instruct the window manager that the position of this widget shall
+be defined by the user if WHO is "user", and by its own policy if WHO is
+"program".
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, who=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## propagate
+Set or get the status for propagation of geometry information.
+
+A boolean argument specifies whether the geometry information
+of the slaves will determine the size of this widget. If no argument
+is given the current setting will be returned.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, flag=['\_noarg\_'])
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## protocol
+Bind function FUNC to command NAME for this widget.
+Return the function bound to NAME if None is given. NAME could be
+e.g. "WM_SAVE_YOURSELF" or "WM_DELETE_WINDOW".
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, name=None, func=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## quit
+Quit the Tcl interpreter. All widgets will be destroyed.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## register
+Return a newly created Tcl function. If this
+function is called, the Python function FUNC will
+be executed. An optional function SUBST can
+be given which will be executed before FUNC.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, func, subst=None, needcleanup=1)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## resizable
+Instruct the window manager whether this width can be resized
+in WIDTH or HEIGHT. Both values are boolean values.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, width=None, height=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## rowconfigure
+Configure row INDEX of a grid.
+
+Valid resources are minsize (minimum size of the row),
+weight (how much does additional space propagate to this row)
+and pad (how much space to let additionally).
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, index, cnf={}, \*\*kw)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## selection\_clear
+Clear the current X selection.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, \*\*kw)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## selection\_get
+Return the contents of the current X selection.
+
+A keyword parameter selection specifies the name of
+the selection and defaults to PRIMARY.  A keyword
+parameter displayof specifies a widget on the display
+to use. A keyword parameter type specifies the form of data to be
+fetched, defaulting to STRING except on X11, where UTF8_STRING is tried
+before STRING.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, \*\*kw)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## selection\_handle
+Specify a function COMMAND to call if the X
+selection owned by this widget is queried by another
+application.
+
+This function must return the contents of the
+selection. The function will be called with the
+arguments OFFSET and LENGTH which allows the chunking
+of very long selections. The following keyword
+parameters can be provided:
+selection - name of the selection (default PRIMARY),
+type - type of the selection (e.g. STRING, FILE_NAME).
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, command, \*\*kw)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## selection\_own
+Become owner of X selection.
+
+A keyword parameter selection specifies the name of
+the selection (default PRIMARY).
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, \*\*kw)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## selection\_own\_get
+Return owner of X selection.
+
+The following keyword parameter can
+be provided:
+selection - name of the selection (default PRIMARY),
+type - type of the selection (e.g. STRING, FILE_NAME).
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, \*\*kw)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## send
+Send Tcl command CMD to different interpreter INTERP to be executed.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, interp, cmd, \*args)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## setvar
+Set Tcl variable NAME to VALUE.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, name='PY\_VAR', value='1')
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## size
+Return a tuple of the number of column and rows in the grid.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## sizefrom
+Instruct the window manager that the size of this widget shall
+be defined by the user if WHO is "user", and by its own policy if WHO is
+"program".
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, who=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## slaves
+Return a list of all slaves of this widget
+in its packing order.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## state
+Query or set the state of this widget as one of normal, icon,
+iconic (see wm_iconwindow), withdrawn, or zoomed (Windows only).
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, newstate=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## title
+Set the title of this widget.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, string=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## tk\_bisque
+Change the color scheme to light brown as used in Tk 3.6 and before.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## tk\_focusFollowsMouse
+The widget under mouse will get automatically focus. Can not
+be disabled easily.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## tk\_focusNext
+Return the next widget in the focus order which follows
+widget which has currently the focus.
+
+The focus order first goes to the next child, then to
+the children of the child recursively and then to the
+next sibling which is higher in the stacking order.  A
+widget is omitted if it has the takefocus resource set
+to 0.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## tk\_focusPrev
+Return previous widget in the focus order. See tk_focusNext for details.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## tk\_setPalette
+Set a new color scheme for all widget elements.
+
+A single color as argument will cause that all colors of Tk
+widget elements are derived from this.
+Alternatively several keyword parameters and its associated
+colors can be given. The following keywords are valid:
+activeBackground, foreground, selectColor,
+activeForeground, highlightBackground, selectBackground,
+background, highlightColor, selectForeground,
+disabledForeground, insertBackground, troughColor.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, \*args, \*\*kw)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## tk\_strictMotif
+Set Tcl internal variable, whether the look and feel
+should adhere to Motif.
+
+A parameter of 1 means adhere to Motif (e.g. no color
+change if mouse passes over slider).
+Returns the set value.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, boolean=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## tkraise
+Raise this widget in the stacking order.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, aboveThis=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## transient
+Instruct the window manager that this widget is transient
+with regard to widget MASTER.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, master=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## unbind
+Unbind for this widget for event SEQUENCE  the
+function identified with FUNCID.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, sequence, funcid=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## unbind\_all
+Unbind for all widgets for event SEQUENCE all functions.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, sequence)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## unbind\_class
+Unbind for all widgets with bindtag CLASSNAME for event SEQUENCE
+all functions.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, className, sequence)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## update
+Enter event loop until all pending events have been processed by Tcl.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## update\_idletasks
+Enter event loop until all idle callbacks have been called. This
+will update the display of windows but not process events caused by
+the user.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wait\_variable
+Wait until the variable is modified.
+
+A parameter of type IntVar, StringVar, DoubleVar or
+BooleanVar must be given.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, name='PY\_VAR')
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wait\_visibility
+Wait until the visibility of a WIDGET changes
+(e.g. it appears).
+
+If no parameter is given self is used.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, window=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wait\_window
+Wait until a WIDGET is destroyed.
+
+If no parameter is given self is used.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, window=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## waitvar
+Wait until the variable is modified.
+
+A parameter of type IntVar, StringVar, DoubleVar or
+BooleanVar must be given.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, name='PY\_VAR')
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_atom
+Return integer which represents atom NAME.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, name, displayof=0)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_atomname
+Return name of atom with identifier ID.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, id, displayof=0)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_cells
+Return number of cells in the colormap for this widget.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_children
+Return a list of all widgets which are children of this widget.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_class
+Return window class name of this widget.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_colormapfull
+Return true if at the last color request the colormap was full.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_containing
+Return the widget which is at the root coordinates ROOTX, ROOTY.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, rootX, rootY, displayof=0)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_depth
+Return the number of bits per pixel.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_exists
+Return true if this widget exists.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_fpixels
+Return the number of pixels for the given distance NUMBER
+(e.g. "3c") as float.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, number)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_geometry
+Return geometry string for this widget in the form "widthxheight+X+Y".
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_height
+Return height of this widget.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_id
+Return identifier ID for this widget.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_interps
+Return the name of all Tcl interpreters for this display.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, displayof=0)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_ismapped
+Return true if this widget is mapped.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_manager
+Return the window manager name for this widget.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_name
+Return the name of this widget.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_parent
+Return the name of the parent of this widget.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_pathname
+Return the pathname of the widget given by ID.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, id, displayof=0)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_pixels
+Rounded integer value of winfo_fpixels.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, number)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_pointerx
+Return the x coordinate of the pointer on the root window.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_pointerxy
+Return a tuple of x and y coordinates of the pointer on the root window.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_pointery
+Return the y coordinate of the pointer on the root window.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_reqheight
+Return requested height of this widget.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_reqwidth
+Return requested width of this widget.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_rgb
+Return tuple of decimal values for red, green, blue for
+COLOR in this widget.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, color)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_rootx
+Return x coordinate of upper left corner of this widget on the
+root window.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_rooty
+Return y coordinate of upper left corner of this widget on the
+root window.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_screen
+Return the screen name of this widget.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_screencells
+Return the number of the cells in the colormap of the screen
+of this widget.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_screendepth
+Return the number of bits per pixel of the root window of the
+screen of this widget.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_screenheight
+Return the number of pixels of the height of the screen of this widget
+in pixel.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_screenmmheight
+Return the number of pixels of the height of the screen of
+this widget in mm.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_screenmmwidth
+Return the number of pixels of the width of the screen of
+this widget in mm.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_screenvisual
+Return one of the strings directcolor, grayscale, pseudocolor,
+staticcolor, staticgray, or truecolor for the default
+colormodel of this screen.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_screenwidth
+Return the number of pixels of the width of the screen of
+this widget in pixel.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_server
+Return information of the X-Server of the screen of this widget in
+the form "XmajorRminor vendor vendorVersion".
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_toplevel
+Return the toplevel widget of this widget.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_viewable
+Return true if the widget and all its higher ancestors are mapped.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_visual
+Return one of the strings directcolor, grayscale, pseudocolor,
+staticcolor, staticgray, or truecolor for the
+colormodel of this widget.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_visualid
+Return the X identifier for the visual for this widget.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_visualsavailable
+Return a list of all visuals available for the screen
+of this widget.
+
+Each item in the list consists of a visual name (see winfo_visual), a
+depth and if includeids is true is given also the X identifier.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self, includeids=False)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_vrootheight
+Return the height of the virtual root window associated with this
+widget in pixels. If there is no virtual root window return the
+height of the screen.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_vrootwidth
+Return the width of the virtual root window associated with this
+widget in pixel. If there is no virtual root window return the
+width of the screen.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_vrootx
+Return the x offset of the virtual root relative to the root
+window of the screen of this widget.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_vrooty
+Return the y offset of the virtual root relative to the root
+window of the screen of this widget.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_width
+Return the width of this widget.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_x
+Return the x coordinate of the upper left corner of this widget
+in the parent.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## winfo\_y
+Return the y coordinate of the upper left corner of this widget
+in the parent.
+
+**Inherited from:** tkinter.Misc
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## withdraw
+Withdraw this widget from the screen such that it is unmapped
+and forgotten by the window manager. Re-draw it with wm_deiconify.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_aspect
+Instruct the window manager to set the aspect ratio (width/height)
+of this widget to be between MINNUMER/MINDENOM and MAXNUMER/MAXDENOM. Return a tuple
+of the actual values if no argument is given.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, minNumer=None, minDenom=None, maxNumer=None, maxDenom=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_attributes
+This subcommand returns or sets platform specific attributes
+
+The first form returns a list of the platform specific flags and
+their values. The second form returns the value for the specific
+option. The third form sets one or more of the values. The values
+are as follows:
+
+On Windows, -disabled gets or sets whether the window is in a
+disabled state. -toolwindow gets or sets the style of the window
+to toolwindow (as defined in the MSDN). -topmost gets or sets
+whether this is a topmost window (displays above all other
+windows).
+
+On Macintosh, XXXXX
+
+On Unix, there are currently no special attribute values.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, \*args)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_client
+Store NAME in WM_CLIENT_MACHINE property of this widget. Return
+current value.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, name=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_colormapwindows
+Store list of window names (WLIST) into WM_COLORMAPWINDOWS property
+of this widget. This list contains windows whose colormaps differ from their
+parents. Return current list of widgets if WLIST is empty.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, \*wlist)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_command
+Store VALUE in WM_COMMAND property. It is the command
+which shall be used to invoke the application. Return current
+command if VALUE is None.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, value=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_deiconify
+Deiconify this widget. If it was never mapped it will not be mapped.
+On Windows it will raise this widget and give it the focus.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_focusmodel
+Set focus model to MODEL. "active" means that this widget will claim
+the focus itself, "passive" means that the window manager shall give
+the focus. Return current focus model if MODEL is None.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, model=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_forget
+The window will be unmapped from the screen and will no longer
+be managed by wm. toplevel windows will be treated like frame
+windows once they are no longer managed by wm, however, the menu
+option configuration will be remembered and the menus will return
+once the widget is managed again.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, window)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_frame
+Return identifier for decorative frame of this widget if present.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_geometry
+Set geometry to NEWGEOMETRY of the form =widthxheight+x+y. Return
+current value if None is given.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, newGeometry=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_grid
+Instruct the window manager that this widget shall only be
+resized on grid boundaries. WIDTHINC and HEIGHTINC are the width and
+height of a grid unit in pixels. BASEWIDTH and BASEHEIGHT are the
+number of grid units requested in Tk_GeometryRequest.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, baseWidth=None, baseHeight=None, widthInc=None, heightInc=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_group
+Set the group leader widgets for related widgets to PATHNAME. Return
+the group leader of this widget if None is given.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, pathName=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_iconbitmap
+Set bitmap for the iconified widget to BITMAP. Return
+the bitmap if None is given.
+
+Under Windows, the DEFAULT parameter can be used to set the icon
+for the widget and any descendents that don't have an icon set
+explicitly.  DEFAULT can be the relative path to a .ico file
+(example: root.iconbitmap(default='myicon.ico') ).  See Tk
+documentation for more information.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, bitmap=None, default=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_iconify
+Display widget as icon.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_iconmask
+Set mask for the icon bitmap of this widget. Return the
+mask if None is given.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, bitmap=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_iconname
+Set the name of the icon for this widget. Return the name if
+None is given.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, newName=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_iconphoto
+Sets the titlebar icon for this window based on the named photo
+images passed through args. If default is True, this is applied to
+all future created toplevels as well.
+
+The data in the images is taken as a snapshot at the time of
+invocation. If the images are later changed, this is not reflected
+to the titlebar icons. Multiple images are accepted to allow
+different images sizes to be provided. The window manager may scale
+provided icons to an appropriate size.
+
+On Windows, the images are packed into a Windows icon structure.
+This will override an icon specified to wm_iconbitmap, and vice
+versa.
+
+On X, the images are arranged into the _NET_WM_ICON X property,
+which most modern window managers support. An icon specified by
+wm_iconbitmap may exist simultaneously.
+
+On Macintosh, this currently does nothing.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, default=False, \*args)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_iconposition
+Set the position of the icon of this widget to X and Y. Return
+a tuple of the current values of X and X if None is given.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, x=None, y=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_iconwindow
+Set widget PATHNAME to be displayed instead of icon. Return the current
+value if None is given.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, pathName=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_manage
+The widget specified will become a stand alone top-level window.
+The window will be decorated with the window managers title bar,
+etc.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, widget)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_maxsize
+Set max WIDTH and HEIGHT for this widget. If the window is gridded
+the values are given in grid units. Return the current values if None
+is given.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, width=None, height=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_minsize
+Set min WIDTH and HEIGHT for this widget. If the window is gridded
+the values are given in grid units. Return the current values if None
+is given.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, width=None, height=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_overrideredirect
+Instruct the window manager to ignore this widget
+if BOOLEAN is given with 1. Return the current value if None
+is given.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, boolean=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_positionfrom
+Instruct the window manager that the position of this widget shall
+be defined by the user if WHO is "user", and by its own policy if WHO is
+"program".
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, who=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_protocol
+Bind function FUNC to command NAME for this widget.
+Return the function bound to NAME if None is given. NAME could be
+e.g. "WM_SAVE_YOURSELF" or "WM_DELETE_WINDOW".
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, name=None, func=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_resizable
+Instruct the window manager whether this width can be resized
+in WIDTH or HEIGHT. Both values are boolean values.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, width=None, height=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_sizefrom
+Instruct the window manager that the size of this widget shall
+be defined by the user if WHO is "user", and by its own policy if WHO is
+"program".
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, who=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_state
+Query or set the state of this widget as one of normal, icon,
+iconic (see wm_iconwindow), withdrawn, or zoomed (Windows only).
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, newstate=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_title
+Set the title of this widget.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, string=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_transient
+Instruct the window manager that this widget is transient
+with regard to widget MASTER.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self, master=None)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+## wm\_withdraw
+Withdraw this widget from the screen such that it is unmapped
+and forgotten by the window manager. Re-draw it with wm_deiconify.
+
+**Inherited from:** tkinter.Wm
+
+**Signature:** (self)
+
+
+
+
+
+**Return Value:** None.
+
+[Back to Top](#module-overview)
+
+
+
